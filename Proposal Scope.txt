@@ -1,0 +1,29 @@
+Client side***
+ - Register and login
+ - Search and find the nearest salon
+ - Check the prices, reviews and ratings
+ - Book an appointment
+   - Check how many people have already made appointments
+   - Make online payments
+   - Generate invoice
+ - Rate the salon
+   - Hygiene rating
+   - Hairstyle rating
+   - Experience rating
+ - Give reviews
+   - Add comments
+   - Add picture of the hairstyle
+ - Get notification about promotions from the salons
+
+Service provider***
+ - Register and login
+   - Should agree that their salon will be rated and 
+     (will not be able to rate themselves)
+ - Add details of the salon
+   - Name
+   - Address
+   - Pricing for items and descriptions
+   - Banking details for online payments
+ - Get notification when someone books an appointment
+ - Have its own profile
+ - Create promotions
