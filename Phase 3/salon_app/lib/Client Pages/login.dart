@@ -1,25 +1,24 @@
-
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Find_Salon()));
+//void main() => runApp(MaterialApp(home: Login()));
 
-class Find_Salon extends StatefulWidget {
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
-  State<Find_Salon> createState() => _Find_SalonState();
+  State<Login> createState() => _LoginState();
 }
 
-class _Find_SalonState extends State<Find_Salon> {
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(" "),
-
       ),
       body: const SafeArea(
         child: Text("Hello"),
       ),
-      
     );
   }
 }

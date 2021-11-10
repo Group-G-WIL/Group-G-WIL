@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Loading()));
+//void main() => runApp(MaterialApp(home: Booking()));
 
-class Loading extends StatefulWidget {
-  //const Loading(Key? key) : super(key: key);
+class Booking extends StatefulWidget {
+  const Booking({Key? key}) : super(key: key);
 
   @override
-  State<Loading> createState() => _LoadingState();
+  State<Booking> createState() => _BookingState();
 }
 
-class _LoadingState extends State<Loading> {
+class _BookingState extends State<Booking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(" "),
-
       ),
       body: const SafeArea(
         child: Text("Hello"),
       ),
-      
     );
   }
 }

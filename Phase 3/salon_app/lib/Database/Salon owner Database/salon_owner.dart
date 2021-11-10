@@ -1,4 +1,4 @@
-import 'package:salon_app/custom_classes/user.dart';
+import 'package:salon_app/Database/user.dart';
 
 class SalonOwner extends User {
   String salonName;
