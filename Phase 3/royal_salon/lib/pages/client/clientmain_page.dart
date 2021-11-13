@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
+import 'package:royal_salon/pages/client/findsalon.dart';
 import 'package:royal_salon/services/user_helper.dart';
 
 var indexClicked = 0;
@@ -15,21 +16,39 @@ class ClientMain extends StatefulWidget {
 
 class _ClientMainState extends State<ClientMain> {
   final pages = [
+    //
+    findSalon(),
+    //
+
+    //
     Center(
       child: Text('Inbox'),
     ),
+    //
+
+    //
     Center(
       child: Text('Bookings'),
     ),
+    //
+
+    //
     Center(
       child: Text('Favourites'),
     ),
+    //
+
+    //
     Center(
       child: Text('Wallet'),
     ),
+    //
+
+    //
     Center(
       child: Text('Account Settings'),
     ),
+    //
   ];
 
   VoidCallback updateState(int index) {
@@ -46,7 +65,7 @@ class _ClientMainState extends State<ClientMain> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Home',
+          'Royal Salon',
         ),
       ),
       body: pages[indexClicked],
@@ -121,6 +140,10 @@ class _ClientMainState extends State<ClientMain> {
                   AppDrawerTile(
                     index: 4,
                     onTap: updateState(4),
+                  ),
+                  AppDrawerTile(
+                    index: 5,
+                    onTap: updateState(5),
                   ),
                   const SizedBox(
                     height: 30,

@@ -16,6 +16,9 @@ class SalonPage extends StatefulWidget {
 class _SalonPageState extends State<SalonPage> {
   final pages = [
     Center(
+      child: Text('Home'),
+    ),
+    Center(
       child: Text('Inbox'),
     ),
     Center(
@@ -128,6 +131,10 @@ class _SalonPageState extends State<SalonPage> {
                   AppDrawerTile(
                     index: 5,
                     onTap: updateState(5),
+                  ),
+                  AppDrawerTile(
+                    index: 6,
+                    onTap: updateState(6),
                   ),
                   const SizedBox(
                     height: 30,

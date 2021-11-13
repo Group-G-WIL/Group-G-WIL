@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
+import 'package:royal_salon/pages/client/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
 
 class RouteManager {
   static const String loginPage = '/';
+  static const String findsalonPage = '/findsalonPage';
   static const String salonlogin = '/salonLogin';
   static const String registerPage = '/registerPage';
   static const String clientPage = '/clientPage';
@@ -30,7 +32,10 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => SalonLogin(),
         );
-
+      case findsalonPage:
+        return MaterialPageRoute(
+          builder: (context) => SelectSalon(),
+        );
       case clientPage:
         return MaterialPageRoute(
           builder: (context) => ClientMain(),

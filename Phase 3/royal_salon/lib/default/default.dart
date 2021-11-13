@@ -7,6 +7,7 @@ class Defaults {
   static final Color? drawerSelectedTileColor = Colors.blue[100];
 
   static final drawerItemText = [
+    'Home',
     'Inbox',
     'Bookings',
     'Favourites',
@@ -15,6 +16,7 @@ class Defaults {
   ];
 
   static final drawerItemIcon = [
+    Icons.home,
     Icons.inbox,
     Icons.send,
     Icons.star,
@@ -24,6 +26,7 @@ class Defaults {
 
   //salon owner menu
   static final drawerItemText1 = [
+    'Home',
     'Inbox',
     'Reviews',
     'Promotions',
@@ -33,6 +36,7 @@ class Defaults {
   ];
 
   static final drawerItemIcon1 = [
+    Icons.home,
     Icons.inbox,
     Icons.send,
     Icons.star,
