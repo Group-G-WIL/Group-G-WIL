@@ -1,6 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:royal_salon/services/user_helper.dart';
 import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/widgets/app_progress_indicator.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
 
 class EditAccount extends StatefulWidget {
@@ -122,9 +126,43 @@ class _EditAccountState extends State<EditAccount> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.purple),
-                        onPressed: () async {
-                          Navigator.pop;
+                        style: ElevatedButton.styleFrom(primary: Colors.blue),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Are you sure?"),
+                                  titleTextStyle: const TextStyle(
+                                    fontSize: 20.0,
+                                  ),
+                                  content: const Text(
+                                      'Are you sure you want to make changes?'
+                                      ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        updateUserDatainUI(context,
+                                            email: usernameController.text,
+                                            password: passwordController.text,
+                                            confirm: confirmController.text,
+                                            name: nameController.text,
+                                            surname: surnameController.text,
+                                            cellphone:
+                                                phonenumberController.text);
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('YES'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('CANCEL'),
+                                    ),
+                                  ],
+                                );
+                              });
                         },
                         child: const Text('Make changes'),
                       ),

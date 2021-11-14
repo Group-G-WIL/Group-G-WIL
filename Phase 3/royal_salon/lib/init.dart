@@ -10,15 +10,11 @@ class InitApp {
   static const String appID = '402DF39D-2B97-9100-FF22-5B89BBAAFB00';
 
   static void initializeApp(BuildContext context) async {
-    
-
-    Future.delayed(const Duration(seconds: 1), () async {
-      await Backendless.initApp(
+    await Backendless.initApp(
         applicationId: appID,
         iosApiKey: apiKeyiOS,
         androidApiKey: apiKeyAndroid);
-    });
-    
+
     String result = await context.read<UserService>().checkIfUserLoggedIn();
     if (result == 'OK') {
       Navigator.popAndPushNamed(context, RouteManager.clientPage);

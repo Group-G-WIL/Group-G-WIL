@@ -19,7 +19,7 @@ void createNewUserInUI(BuildContext context,
   if (email.isEmpty ||
       name.isEmpty ||
       surname.isEmpty ||
-      cellphone.isEmpty | password.isEmpty ||
+      cellphone.isEmpty || password.isEmpty ||
       confirm.isEmpty) {
     showSnackBar(
       context,
@@ -37,7 +37,7 @@ void createNewUserInUI(BuildContext context,
       ..putProperties({
         'name': name.trim(),
         'surname': surname.trim(),
-        'cellphone': cellphone.trim()
+        'cellphone': cellphone..toString().trim()
       });
 
     String result = await context.read<UserService>().createUser(user);
@@ -120,7 +120,17 @@ void updateUserDatainUI(BuildContext context,
     required String surname,
     required String cellphone}) async {
   FocusManager.instance.primaryFocus?.unfocus();
-  String result = await context.read<UserService>().update(BackendlessUser()
+
+  if (email.isEmpty ||
+      name.isEmpty ||
+      surname.isEmpty ||
+      cellphone.isEmpty || password.isEmpty ||
+      confirm.isEmpty)
+  {
+    
+  }
+  else{
+    String result = await context.read<UserService>().update(BackendlessUser()
     ..putProperties({
       'email': email.toString().trim(),
       'name': name.toString().trim(),
@@ -128,9 +138,10 @@ void updateUserDatainUI(BuildContext context,
       'cellphone': cellphone.toString().trim(),
       'password': password.toString().trim(),
     }));
-  if (result != 'OK') {
-    showSnackBar(context, result);
-  } else {
-    Navigator.pop;
+    if (result != 'OK') {
+      showSnackBar(context, result);
+    } else {
+      Navigator.pop;
+    }
   }
 }
