@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
+import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/services/user_helper.dart';
 
 var indexClicked = 0;
@@ -14,7 +15,7 @@ class SalonPage extends StatefulWidget {
 }
 
 class _SalonPageState extends State<SalonPage> {
-  final pages = [
+  final pages = const [
     Center(
       child: Text('Home'),
     ),
@@ -51,7 +52,7 @@ class _SalonPageState extends State<SalonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Home',
         ),
       ),
@@ -61,47 +62,45 @@ class _SalonPageState extends State<SalonPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage('assets/images/drawer.jpg'),
                 ),
               ),
-              padding: EdgeInsets.all(0),
-              child: Container(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const CircleAvatar(
+                    radius: 42,
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'John Rambo',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    CircleAvatar(
-                      radius: 42,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'john@rambo.com',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'John Rambo',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'john@rambo.com',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -122,7 +121,8 @@ class _SalonPageState extends State<SalonPage> {
                   ),
                   AppDrawerTile(
                     index: 3,
-                    onTap: updateState(3),
+                    onTap:
+                      updateState(3),
                   ),
                   AppDrawerTile(
                     index: 4,
@@ -133,13 +133,17 @@ class _SalonPageState extends State<SalonPage> {
                     onTap: updateState(5),
                   ),
                   AppDrawerTile(
-                    index: 6,
-                    onTap: updateState(6),
+                    index: 6,               
+                    onTap: () {
+                      updateState(6);
+                      Navigator.pushNamed(context, RouteManager.editAccountPage,
+                          arguments: Null);
+                    },
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  AppDrawerDivider(),
+                  const AppDrawerDivider(),
                   const SizedBox(
                     height: 10,
                   ),

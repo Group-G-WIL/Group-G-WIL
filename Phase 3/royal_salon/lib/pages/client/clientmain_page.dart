@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
 import 'package:royal_salon/pages/client/findsalon.dart';
 import 'package:royal_salon/services/user_helper.dart';
+import 'package:royal_salon/routes/routes.dart';
 
 var indexClicked = 0;
 
@@ -15,9 +16,9 @@ class ClientMain extends StatefulWidget {
 }
 
 class _ClientMainState extends State<ClientMain> {
-  final pages = [
+  final pages = const [
     //
-    findSalon(),
+    FindSalon(),
     //
 
     //
@@ -64,7 +65,7 @@ class _ClientMainState extends State<ClientMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Royal Salon',
         ),
       ),
@@ -74,47 +75,45 @@ class _ClientMainState extends State<ClientMain> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage('assets/images/drawer.jpg'),
                 ),
               ),
-              padding: EdgeInsets.all(0),
-              child: Container(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const CircleAvatar(
+                    radius: 42,
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'John Rambo',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    CircleAvatar(
-                      radius: 42,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'john@rambo.com',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'John Rambo',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'john@rambo.com',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -143,12 +142,16 @@ class _ClientMainState extends State<ClientMain> {
                   ),
                   AppDrawerTile(
                     index: 5,
-                    onTap: updateState(5),
+                    onTap: () {
+                      updateState(5);
+                      Navigator.pushNamed(context, RouteManager.editAccountPage,
+                          arguments: Null);
+                    },
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  AppDrawerDivider(),
+                  const AppDrawerDivider(),
                   const SizedBox(
                     height: 10,
                   ),

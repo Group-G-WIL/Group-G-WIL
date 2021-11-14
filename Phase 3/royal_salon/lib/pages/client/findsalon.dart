@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
-class findSalon extends StatelessWidget {
-  const findSalon({
+class FindSalon extends StatelessWidget {
+  const FindSalon({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class findSalon extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
           ),
-          child: Text('Find a salon'),
+          child: const Text('Find a salon'),
         ),
       ),
     );
@@ -33,9 +33,14 @@ class SelectSalon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Text('Google maps'),
-    ));
+      body: Center(
+        child: Column(
+          children: const [
+            Text('Google maps'),
+          ],
+        ),
+      ),
+    );
   }
 }
 

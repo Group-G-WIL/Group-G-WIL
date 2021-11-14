@@ -6,6 +6,7 @@ import 'package:royal_salon/pages/client/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
+import 'package:royal_salon/routes/edit_account.dart';
 
 class RouteManager {
   static const String loginPage = '/';
@@ -15,40 +16,47 @@ class RouteManager {
   static const String clientPage = '/clientPage';
   static const String salonPage = '/SalonPage';
   static const String loadingPage = '/loadingPage';
+  static const String editAccountPage = '/editAccountPage';
+  
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case loginPage:
         return MaterialPageRoute(
-          builder: (context) => Login(),
+          builder: (context) => const Login(),
         );
 
       case registerPage:
         return MaterialPageRoute(
-          builder: (context) => Register(),
+          builder: (context) => const Register(),
         );
 
       case salonlogin:
         return MaterialPageRoute(
-          builder: (context) => SalonLogin(),
+          builder: (context) => const SalonLogin(),
         );
       case findsalonPage:
         return MaterialPageRoute(
-          builder: (context) => SelectSalon(),
+          builder: (context) => const SelectSalon(),
         );
       case clientPage:
         return MaterialPageRoute(
-          builder: (context) => ClientMain(),
+          builder: (context) => const ClientMain(),
         );
 
       case salonPage:
         return MaterialPageRoute(
-          builder: (context) => SalonPage(),
+          builder: (context) => const SalonPage(),
         );
 
       case loadingPage:
         return MaterialPageRoute(
-          builder: (context) => Loading(),
+          builder: (context) => const Loading(),
+        );
+
+      case editAccountPage:
+        return MaterialPageRoute(
+          builder: (context) => const EditAccount(),
         );
 
       default:

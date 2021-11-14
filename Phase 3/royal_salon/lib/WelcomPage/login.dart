@@ -92,7 +92,7 @@ class _LoginState extends State<Login> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('Login'),
+                        child: const Text('Login'),
                       ),
                     ),
                     TextButton(
@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
                         Navigator.of(context)
                             .pushNamed(RouteManager.registerPage);
                       },
-                      child: Text('Register Now'),
+                      child: const Text('Register Now'),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -113,7 +113,7 @@ class _LoginState extends State<Login> {
                         resetPasswordInUI(context,
                             email: usernameController.text);
                       },
-                      child: Text('Reset Password'),
+                      child: const Text('Reset Password'),
                     ),
                     const SizedBox(
                       height: 20,
@@ -126,7 +126,7 @@ class _LoginState extends State<Login> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.purple,
                       ),
-                      child: Text('Salon Owner Login'),
+                      child: const Text('Salon Owner Login'),
                     ),
                   ],
                 ),

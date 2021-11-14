@@ -21,19 +21,19 @@ class AppTextField extends StatelessWidget {
           const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 20, right: 20),
       child: TextField(
         obscureText: hideText,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
         cursorColor: Colors.white,
         controller: controller,
         keyboardType: keyboardType,
         decoration: InputDecoration(
-          labelStyle: TextStyle(color: Colors.white),
-          focusedBorder: OutlineInputBorder(
+          labelStyle: const TextStyle(color: Colors.white),
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               width: 2,
               color: Colors.white,
             ),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               width: 1,
               color: Colors.grey,

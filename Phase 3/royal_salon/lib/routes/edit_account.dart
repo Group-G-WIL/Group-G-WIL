@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:royal_salon/services/user_helper.dart';
 import 'package:royal_salon/services/userervices.dart';
-import 'package:royal_salon/widgets/app_progress_indicator.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
-import 'package:tuple/tuple.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class EditAccount extends StatefulWidget {
+  const EditAccount({Key? key}) : super(key: key);
 
   @override
-  _RegisterState createState() => _RegisterState();
+  _EditAccountState createState() => _EditAccountState();
 }
 
-class _RegisterState extends State<Register> {
+class _EditAccountState extends State<EditAccount> {
   late TextEditingController usernameController;
   late TextEditingController nameController;
   late TextEditingController surnameController;
@@ -46,6 +43,16 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Account Settings',
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+        ),
+        backgroundColor: Colors.purple[600],
+        elevation: 10.0,
+      ),
       body: Stack(
         children: [
           Container(
@@ -53,7 +60,7 @@ class _RegisterState extends State<Register> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.purple, Colors.blue],
+                colors: [Colors.blue, Colors.purple],
               ),
             ),
             child: Center(
@@ -62,9 +69,9 @@ class _RegisterState extends State<Register> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(bottom: 30.0),
+                      padding: EdgeInsets.all(30.0),
                       child: Text(
-                        'Client Sign in',
+                        'Edit Settings',
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.w200,
@@ -95,20 +102,6 @@ class _RegisterState extends State<Register> {
                         labelText: 'Please enter your email address',
                       ),
                     ),
-                    Selector<UserService, bool>(
-                      selector: (context, value) => value.userExists,
-                      builder: (context, value, child) {
-                        return value
-                            ? const Text(
-                                'username exists, please choose another',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            : Container();
-                      },
-                    ),
                     AppTextField(
                       keyboardType: TextInputType.phone,
                       controller: phonenumberController,
@@ -130,47 +123,16 @@ class _RegisterState extends State<Register> {
                       padding: const EdgeInsets.only(top: 8.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.purple),
-                        onPressed: () {
-                          createNewUserInUI(
-                            context,
-                            email: usernameController.text.trim(),
-                            password: passwordController.text.trim(),
-                            name: nameController.text.trim(),
-                            surname: surnameController.text.trim(),
-                            cellphone: phonenumberController.toString().trim(),
-                            confirm: confirmController.text.trim()
-                          );
+                        onPressed: () async {
+                          Navigator.pop;
                         },
-                        child: const Text('Register'),
+                        child: const Text('Make changes'),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
-          Positioned(
-            left: 20,
-            top: 30,
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                size: 30,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Selector<UserService, Tuple2>(
-            selector: (context, value) =>
-                Tuple2(value.showUserProgress, value.userProgressText),
-            builder: (context, value, child) {
-              return value.item1
-                  ? AppProgressIndicator(text: '${value.item2}')
-                  : Container();
-            },
           ),
         ],
       ),

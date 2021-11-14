@@ -117,7 +117,7 @@ class UserService with ChangeNotifier {
         .withClass<BackendlessUser>()
         .find(queryBuilder)
         .then((value) {
-      if (value == null || value.length == 0) {
+      if (value == null || value.isEmpty) {
         _userExists = false;
         notifyListeners();
       } else {
@@ -125,7 +125,7 @@ class UserService with ChangeNotifier {
         notifyListeners();
       }
     }).onError((error, stackTrace) {
-      print(error.toString());
+      getHumanReadableError(error.toString());
     });
   }
 
@@ -148,6 +148,19 @@ class UserService with ChangeNotifier {
     }
     _showUserProgress = false;
     notifyListeners();
+    return result;
+  }
+
+  Future<String> update(BackendlessUser user) async {
+    String result = 'OK';
+    _showUserProgress = true;
+    _userProgressText = 'Updating user data...please wait...';
+    notifyListeners();
+    try {
+      await Backendless.userService.update(user);
+    } catch (e) {
+      result = getHumanReadableError(e.toString());
+    }
     return result;
   }
 }

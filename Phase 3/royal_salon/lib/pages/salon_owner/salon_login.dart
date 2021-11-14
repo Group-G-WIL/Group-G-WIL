@@ -96,7 +96,7 @@ class _SalonLoginState extends State<SalonLogin> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('Login'),
+                        child: const Text('Login'),
                       ),
                     ),
                     TextButton(
@@ -107,7 +107,7 @@ class _SalonLoginState extends State<SalonLogin> {
                         Navigator.of(context)
                             .pushNamed(RouteManager.registerPage);
                       },
-                      child: Text('Register Now'),
+                      child: const Text('Register Now'),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -117,7 +117,7 @@ class _SalonLoginState extends State<SalonLogin> {
                         resetPasswordInUI(context,
                             email: usernameController.text);
                       },
-                      child: Text('Reset Password'),
+                      child: const Text('Reset Password'),
                     ),
                     const SizedBox(
                       height: 20,

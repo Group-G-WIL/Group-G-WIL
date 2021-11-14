@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/init.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     InitApp.initializeApp(context);
+    
   }
 
   @override
@@ -44,6 +46,12 @@ class _LoadingState extends State<Loading> {
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
+              Center(
+                child: SpinKitChasingDots(
+                  size: 50.0,
+                  color: Colors.white,
+                )
+              )
             ],
           ),
         ),

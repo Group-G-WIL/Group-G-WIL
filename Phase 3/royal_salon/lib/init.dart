@@ -1,9 +1,7 @@
 import 'package:backendless_sdk/backendless_sdk.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
-
 import 'package:royal_salon/services/userervices.dart';
 
 class InitApp {
@@ -12,10 +10,15 @@ class InitApp {
   static const String appID = '402DF39D-2B97-9100-FF22-5B89BBAAFB00';
 
   static void initializeApp(BuildContext context) async {
-    await Backendless.initApp(
+    
+
+    Future.delayed(const Duration(seconds: 1), () async {
+      await Backendless.initApp(
         applicationId: appID,
         iosApiKey: apiKeyiOS,
         androidApiKey: apiKeyAndroid);
+    });
+    
     String result = await context.read<UserService>().checkIfUserLoggedIn();
     if (result == 'OK') {
       Navigator.popAndPushNamed(context, RouteManager.clientPage);

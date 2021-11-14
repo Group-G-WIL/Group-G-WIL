@@ -1,6 +1,7 @@
 class SalonEntry {
   Map<dynamic, dynamic> salons;
   String username;
+  
   String? objectId;
   DateTime? created;
   DateTime? updated;

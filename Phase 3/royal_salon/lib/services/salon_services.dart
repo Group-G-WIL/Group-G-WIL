@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-class SalonService with ChangeNotifier {}
+class SalonService with ChangeNotifier {
+  
+}

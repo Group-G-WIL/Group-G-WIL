@@ -10,13 +10,25 @@ import 'package:royal_salon/widgets/dialogs.dart';
 void createNewUserInUI(BuildContext context,
     {required String email,
     required String password,
-    required String name}) async {
+    required String confirm,
+    required String name,
+    required String surname,
+    required String cellphone}) async {
   FocusManager.instance.primaryFocus?.unfocus();
 
-  if (email.isEmpty || name.isEmpty || password.isEmpty) {
+  if (email.isEmpty ||
+      name.isEmpty ||
+      surname.isEmpty ||
+      cellphone.isEmpty | password.isEmpty ||
+      confirm.isEmpty) {
     showSnackBar(
       context,
       'Please enter all fields!',
+    );
+  } else if (password.toString() != confirm.toString()) {
+    showSnackBar(
+      context,
+      'Passwords do not match!',
     );
   } else {
     BackendlessUser user = BackendlessUser()
@@ -24,6 +36,8 @@ void createNewUserInUI(BuildContext context,
       ..password = password.trim()
       ..putProperties({
         'name': name.trim(),
+        'surname': surname.trim(),
+        'cellphone': cellphone.trim()
       });
 
     String result = await context.read<UserService>().createUser(user);
@@ -95,5 +109,28 @@ void logoutUserInUI(BuildContext context) async {
     Navigator.popAndPushNamed(context, RouteManager.loginPage);
   } else {
     showSnackBar(context, result);
+  }
+}
+
+void updateUserDatainUI(BuildContext context,
+    {required String email,
+    required String password,
+    required String confirm,
+    required String name,
+    required String surname,
+    required String cellphone}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  String result = await context.read<UserService>().update(BackendlessUser()
+    ..putProperties({
+      'email': email.toString().trim(),
+      'name': name.toString().trim(),
+      'surname': surname.toString().trim(),
+      'cellphone': cellphone.toString().trim(),
+      'password': password.toString().trim(),
+    }));
+  if (result != 'OK') {
+    showSnackBar(context, result);
+  } else {
+    Navigator.pop;
   }
 }
