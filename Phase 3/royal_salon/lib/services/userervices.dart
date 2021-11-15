@@ -1,5 +1,4 @@
 import 'package:backendless_sdk/backendless_sdk.dart';
-
 import 'package:flutter/material.dart';
 import 'package:royal_salon/models/salon_entry.dart';
 
@@ -155,12 +154,49 @@ class UserService with ChangeNotifier {
     String result = 'OK';
     _showUserProgress = true;
     _userProgressText = 'Updating user data...please wait...';
+
     notifyListeners();
     try {
-      await Backendless.userService.update(user);
+      //await Backendless.userService.update(user);
+
+      // await Backendless.data
+      //   .of('SalonEntry')
+      //   .update("email = '$email'", other/**{
+      //     'cellphone': '212-555-1212',
+      //     'name': 'Updated name',
+      //     'surname': 'New surname'}*/);
+
+      
+      await Backendless.userService
+          .login(user.email, user.password)
+          .then((value) {
+        if (value != null) {
+          value.setProperties({
+            /**'email': 'mzolisi04@gmail.com',
+                'password': 'mzi',*/
+            'cellphone': '212-555-1212',
+            'name': 'Updated name',
+            'surname': 'New surname'
+          });
+          notifyListeners();
+        } else {
+          result = 'NOT OK 6';
+        }
+      });
     } catch (e) {
-      result = getHumanReadableError(e.toString());
+      result = getHumanReadableError(e.toString() + '  6');
     }
+
+    try {
+      Backendless.userService.update(user).onError((error, stackTrace) {
+        result = getHumanReadableError(error.toString());
+      });
+    } catch (e) {
+      result = getHumanReadableError(e.toString() + '  7');
+    }
+    //result = '5: no null yet';
+    _showUserProgress = false;
+    notifyListeners();
     return result;
   }
 }

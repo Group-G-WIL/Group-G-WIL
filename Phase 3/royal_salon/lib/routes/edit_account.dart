@@ -1,11 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/services/userervices.dart';
-import 'package:royal_salon/widgets/app_progress_indicator.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
+import 'package:backendless_sdk/backendless_sdk.dart';
+import 'package:royal_salon/widgets/dialogs.dart';
 
 class EditAccount extends StatefulWidget {
   const EditAccount({Key? key}) : super(key: key);
@@ -57,122 +54,122 @@ class _EditAccountState extends State<EditAccount> {
         backgroundColor: Colors.purple[600],
         elevation: 10.0,
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.blue, Colors.purple],
+      body: Container(
+        height: 805.0,
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+        ),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Text(
+                'Edit Settings',
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w200,
+                    color: Colors.white),
               ),
             ),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(30.0),
-                      child: Text(
-                        'Edit Settings',
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w200,
-                            color: Colors.white),
-                      ),
-                    ),
-                    AppTextField(
-                      keyboardType: TextInputType.text,
-                      controller: nameController,
-                      labelText: 'Please enter your name',
-                    ),
-                    AppTextField(
-                      keyboardType: TextInputType.text,
-                      controller: surnameController,
-                      labelText: 'Please enter your surname',
-                    ),
-                    //gender
-                    Focus(
-                      onFocusChange: (value) async {
-                        if (!value) {
-                          context.read<UserService>().checkIfUserExists(
-                              usernameController.text.trim());
-                        }
-                      },
-                      child: AppTextField(
-                        keyboardType: TextInputType.emailAddress,
-                        controller: usernameController,
-                        labelText: 'Please enter your email address',
-                      ),
-                    ),
-                    AppTextField(
-                      keyboardType: TextInputType.phone,
-                      controller: phonenumberController,
-                      labelText: 'Please enter your phone number',
-                    ),
-                    AppTextField(
-                      hideText: true,
-                      keyboardType: TextInputType.text,
-                      controller: passwordController,
-                      labelText: 'Please enter your password',
-                    ),
-                    AppTextField(
-                      hideText: true,
-                      keyboardType: TextInputType.text,
-                      controller: confirmController,
-                      labelText: 'Please confirm your password',
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Colors.blue),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: const Text("Are you sure?"),
-                                  titleTextStyle: const TextStyle(
-                                    fontSize: 20.0,
-                                  ),
-                                  content: const Text(
-                                      'Are you sure you want to make changes?'
-                                      ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        updateUserDatainUI(context,
-                                            email: usernameController.text,
-                                            password: passwordController.text,
-                                            confirm: confirmController.text,
-                                            name: nameController.text,
-                                            surname: surnameController.text,
-                                            cellphone:
-                                                phonenumberController.text);
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('YES'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('CANCEL'),
-                                    ),
-                                  ],
-                                );
-                              });
-                        },
-                        child: const Text('Make changes'),
-                      ),
-                    ),
-                  ],
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AppTextField(
+                  keyboardType: TextInputType.text,
+                  controller: nameController,
+                  textFieldHeader: 'Name: ',
+
+                  //labelText: 'Please enter your name',
                 ),
-              ),
+
+                AppTextField(
+                  keyboardType: TextInputType.text,
+                  controller: surnameController,
+                  textFieldHeader: 'Surname: ',
+                  //labelText: 'Please enter your surname',
+                ),
+                //gender
+                // Focus(
+                //   onFocusChange: (value) async {
+                //     if (!value) {
+                //       context.read<UserService>().checkIfUserExists(
+                //           usernameController.text.trim());
+                //     }
+                //   },
+                //   child: AppTextField(
+                //     keyboardType: TextInputType.emailAddress,
+                //     controller: usernameController,
+                //     labelText: 'Please enter your email address',
+                //   ),
+                // ),
+
+                AppTextField(
+                  keyboardType: TextInputType.phone,
+                  controller: phonenumberController,
+                  textColor: Colors.green,
+                  textFieldHeader: 'Phone number: ',
+                  //labelText: 'Please enter your phone number',
+                ),
+
+                // AppTextField(
+                //   hideText: true,
+                //   keyboardType: TextInputType.text,
+                //   controller: passwordController,
+                //   labelText: 'Please enter your password',
+                // ),
+                // AppTextField(
+                //   hideText: true,
+                //   keyboardType: TextInputType.text,
+                //   controller: confirmController,
+                //   labelText: 'Please confirm your password',
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.purple),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              titleTextStyle: const TextStyle(
+                                fontSize: 20.0,
+                              ),
+                              content: const Text(
+                                  'Are you sure you want to make changes?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    updateUserDatainUI(
+                                        context,
+                                        usernameController.text,
+                                        //passwordController.text,
+                                        confirmController.text,
+                                        nameController.text,
+                                        surnameController.text,
+                                        phonenumberController.text);
+
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('YES'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('CANCEL'),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    child: const Text('Make changes'),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

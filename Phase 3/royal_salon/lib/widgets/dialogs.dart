@@ -14,3 +14,11 @@ void showSnackBar(BuildContext context, String message) {
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+// void showAlertDialog(BuildContext context, String message) {
+//   final alertDialog = AlertDialog(
+//     title: title,
+//     content: Text(message),
+//   );
+//   ScaffoldMessenger.of(context)..showAlertDialog(alertDialog);
+// }

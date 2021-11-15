@@ -19,7 +19,8 @@ void createNewUserInUI(BuildContext context,
   if (email.isEmpty ||
       name.isEmpty ||
       surname.isEmpty ||
-      cellphone.isEmpty || password.isEmpty ||
+      cellphone.isEmpty ||
+      password.isEmpty ||
       confirm.isEmpty) {
     showSnackBar(
       context,
@@ -112,36 +113,46 @@ void logoutUserInUI(BuildContext context) async {
   }
 }
 
-void updateUserDatainUI(BuildContext context,
-    {required String email,
-    required String password,
-    required String confirm,
-    required String name,
-    required String surname,
-    required String cellphone}) async {
+void updateUserDatainUI(
+    BuildContext context,
+    String email,
+    /**String password,*/
+    String confirm,
+    String name,
+    String surname,
+    String cellphone) async {
   FocusManager.instance.primaryFocus?.unfocus();
 
-  if (email.isEmpty ||
+  if (/**email.isEmpty ||*/
       name.isEmpty ||
-      surname.isEmpty ||
-      cellphone.isEmpty || password.isEmpty ||
-      confirm.isEmpty)
-  {
-    
-  }
-  else{
+          surname.isEmpty ||
+          cellphone
+              .isEmpty /**||
+      password.isEmpty ||
+      confirm.isEmpty*/
+      ) {
+    showSnackBar(context, 'Missing changes');
+  } else {
+    // String result = await context
+    //     .read<UserService>()
+    //     .update("email = '${email.toString()}'", {
+    //   'name': name.toString().trim(),
+    //   'surname': surname.toString().trim(),
+    //   'cellphone': cellphone.toString().trim()
+    // });
     String result = await context.read<UserService>().update(BackendlessUser()
-    ..putProperties({
-      'email': email.toString().trim(),
-      'name': name.toString().trim(),
-      'surname': surname.toString().trim(),
-      'cellphone': cellphone.toString().trim(),
-      'password': password.toString().trim(),
-    }));
+      ..putProperties({
+        //'email': email.toString().trim(),
+        'name': name.toString().trim(),
+        'surname': surname.toString().trim(),
+        'cellphone': cellphone.toString().trim(),
+        //'password': password.toString().trim(),
+      }));
     if (result != 'OK') {
       showSnackBar(context, result);
     } else {
-      Navigator.pop;
+      showSnackBar(context, 'User profile successfully updated!');
+      Navigator.pop(context);
     }
   }
 }

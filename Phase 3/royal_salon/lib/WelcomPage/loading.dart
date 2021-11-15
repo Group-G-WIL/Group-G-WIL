@@ -14,7 +14,6 @@ class _LoadingState extends State<Loading> {
   void initState() {
     super.initState();
     InitApp.initializeApp(context);
-    
   }
 
   @override
@@ -47,11 +46,10 @@ class _LoadingState extends State<Loading> {
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               Center(
-                child: SpinKitChasingDots(
-                  size: 50.0,
-                  color: Colors.white,
-                )
-              )
+                  child: SpinKitChasingDots(
+                size: 50.0,
+                color: Colors.white,
+              ))
             ],
           ),
         ),
