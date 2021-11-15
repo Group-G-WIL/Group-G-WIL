@@ -8,7 +8,7 @@ class BookNow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book'),
+        title: const Text('Book'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20, left: 45),
@@ -18,8 +18,8 @@ class BookNow extends StatelessWidget {
           color: Colors.black54,
           child: Column(
             children: [
-              Text('SetDate:'),
-              Text('Payment method:'),
+              const Text('SetDate:'),
+              const Text('Payment method:'),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(RouteManager.recieptPage);
@@ -27,7 +27,7 @@ class BookNow extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                 ),
-                child: Text('Book Now'),
+                child: const Text('Book Now'),
               ),
             ],
           ),

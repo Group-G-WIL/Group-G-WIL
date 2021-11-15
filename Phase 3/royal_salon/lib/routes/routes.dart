@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:royal_salon/pages/client/FindSalon/Book.dart';
+import 'package:royal_salon/pages/client/FindSalon/book.dart';
 import 'package:royal_salon/pages/client/FindSalon/receipt.dart';
-import 'package:royal_salon/pages/client/FindSalon/reviewsSalon.dart';
+import 'package:royal_salon/pages/client/FindSalon/reviews_salon.dart';
 import 'package:royal_salon/pages/client/FindSalon/services.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
@@ -10,6 +12,7 @@ import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
+import 'package:royal_salon/routes/edit_account.dart';
 
 class RouteManager {
   static const String loginPage = '/';
@@ -23,6 +26,7 @@ class RouteManager {
   static const String clientPage = '/clientPage';
   static const String salonPage = '/SalonPage';
   static const String loadingPage = '/loadingPage';
+  static const String editAccountPage = '/editAccountPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -75,6 +79,11 @@ class RouteManager {
       case loadingPage:
         return MaterialPageRoute(
           builder: (context) => Loading(),
+        );
+
+      case editAccountPage:
+        return MaterialPageRoute(
+          builder: (context) => EditAccount(),
         );
 
       default:

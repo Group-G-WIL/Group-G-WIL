@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/services/user_helper.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
-import 'package:backendless_sdk/backendless_sdk.dart';
-import 'package:royal_salon/widgets/dialogs.dart';
 
 class EditAccount extends StatefulWidget {
   const EditAccount({Key? key}) : super(key: key);

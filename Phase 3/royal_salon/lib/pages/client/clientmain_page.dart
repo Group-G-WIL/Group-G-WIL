@@ -15,9 +15,9 @@ class ClientMain extends StatefulWidget {
 }
 
 class _ClientMainState extends State<ClientMain> {
-  final pages = [
+  final pages = const [
     //
-    findSalon(),
+    FindSalon(),
     //
 
     //
@@ -64,7 +64,7 @@ class _ClientMainState extends State<ClientMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Royal Salon',
         ),
       ),
@@ -74,20 +74,20 @@ class _ClientMainState extends State<ClientMain> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage('assets/images/drawer.jpg'),
                 ),
               ),
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               child: Container(
                 child: Column(
                   children: [
                     const SizedBox(
                       height: 10,
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 42,
                       backgroundImage: AssetImage('assets/images/profile.jpg'),
                     ),
@@ -148,7 +148,7 @@ class _ClientMainState extends State<ClientMain> {
                   const SizedBox(
                     height: 30,
                   ),
-                  AppDrawerDivider(),
+                  const AppDrawerDivider(),
                   const SizedBox(
                     height: 10,
                   ),

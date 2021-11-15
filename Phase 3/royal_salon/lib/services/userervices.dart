@@ -166,18 +166,18 @@ class UserService with ChangeNotifier {
       //     'name': 'Updated name',
       //     'surname': 'New surname'}*/);
 
-      
       await Backendless.userService
           .login(user.email, user.password)
           .then((value) {
         if (value != null) {
-          value.setProperties({
-            /**'email': 'mzolisi04@gmail.com',
-                'password': 'mzi',*/
-            'cellphone': '212-555-1212',
-            'name': 'Updated name',
-            'surname': 'New surname'
-          });
+          value.setProperty(
+              //'email': 'mzolisi04@gmail.com',
+              'password',
+              'mzi'
+              //'cellphone', '212-555-1212',
+              // 'name': 'Updated name',
+              // 'surname': 'New surname'
+              );
           notifyListeners();
         } else {
           result = 'NOT OK 6';

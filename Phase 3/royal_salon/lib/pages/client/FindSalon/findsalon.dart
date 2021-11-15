@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
-class findSalon extends StatelessWidget {
-  const findSalon({
+class FindSalon extends StatelessWidget {
+  const FindSalon({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class findSalon extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
           ),
-          child: Text('Find a salon'),
+          child: const Text('Find a salon'),
         ),
       ),
     );
@@ -36,7 +36,7 @@ class _SelectSalonState extends State<SelectSalon> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Find a Salon'),
+          title: const Text('Find a Salon'),
         ),
         backgroundColor: Colors.cyan[100],
         body: Column(
@@ -49,7 +49,7 @@ class _SelectSalonState extends State<SelectSalon> {
                   height: 50,
                   width: 150,
                   //text control
-                  child: Text('Enter your location'),
+                  child: const Text('Enter your location'),
                 ),
               ),
             ),
@@ -60,18 +60,18 @@ class _SelectSalonState extends State<SelectSalon> {
               child: Center(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     IconButton(
-                      icon: Icon(Icons.home_work_outlined),
+                      icon: const Icon(Icons.home_work_outlined),
                       onPressed: showBottomSheet,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     IconButton(
-                      icon: Icon(Icons.home_work_outlined),
+                      icon: const Icon(Icons.home_work_outlined),
                       onPressed: showBottomSheet1,
                     ),
                   ],
@@ -85,7 +85,7 @@ class _SelectSalonState extends State<SelectSalon> {
   void showBottomSheet1() => showModalBottomSheet(
       enableDrag: false,
       isDismissible: false,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24),
           topRight: Radius.circular(24),
@@ -100,7 +100,7 @@ class _SelectSalonState extends State<SelectSalon> {
                 Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
                         'Salon name',
                       ),
@@ -111,7 +111,7 @@ class _SelectSalonState extends State<SelectSalon> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
@@ -128,7 +128,7 @@ class _SelectSalonState extends State<SelectSalon> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('Services'),
+                        child: const Text('Services'),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -138,7 +138,7 @@ class _SelectSalonState extends State<SelectSalon> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('View Reviews'),
+                        child: const Text('View Reviews'),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -148,7 +148,7 @@ class _SelectSalonState extends State<SelectSalon> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('Get Directions'),
+                        child: const Text('Get Directions'),
                       ),
                     ],
                   ),
@@ -161,7 +161,7 @@ class _SelectSalonState extends State<SelectSalon> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
                   ),
-                  child: Text('Add to favourites'),
+                  child: const Text('Add to favourites'),
                 ),
               ],
             ),
@@ -170,7 +170,7 @@ class _SelectSalonState extends State<SelectSalon> {
   void showBottomSheet() => showModalBottomSheet(
         enableDrag: false,
         isDismissible: false,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24),
             topRight: Radius.circular(24),
@@ -180,7 +180,7 @@ class _SelectSalonState extends State<SelectSalon> {
         context: context,
         builder: (context) => Container(
           height: 100,
-          child: Text(
+          child: const Text(
             'Sorry the salon will open at //time',
             textAlign: TextAlign.center,
           ),
