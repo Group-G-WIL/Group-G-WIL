@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
-import 'package:royal_salon/pages/client/findsalon.dart';
+import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/routes/routes.dart';
 
 var indexClicked = 0;
 
@@ -16,9 +15,9 @@ class ClientMain extends StatefulWidget {
 }
 
 class _ClientMainState extends State<ClientMain> {
-  final pages = const [
+  final pages = [
     //
-    FindSalon(),
+    findSalon(),
     //
 
     //
@@ -65,7 +64,7 @@ class _ClientMainState extends State<ClientMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Royal Salon',
         ),
       ),
@@ -75,45 +74,47 @@ class _ClientMainState extends State<ClientMain> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: AssetImage('assets/images/drawer.jpg'),
                 ),
               ),
-              padding: const EdgeInsets.all(0),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const CircleAvatar(
-                    radius: 42,
-                    backgroundImage: AssetImage('assets/images/profile.jpg'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'John Rambo',
-                    style: GoogleFonts.sanchez(
-                      fontSize: 15,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
+              padding: EdgeInsets.all(0),
+              child: Container(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'john@rambo.com',
-                    style: GoogleFonts.sanchez(
-                      fontSize: 10,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
+                    CircleAvatar(
+                      radius: 42,
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'John Rambo',
+                      style: GoogleFonts.sanchez(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'john@rambo.com',
+                      style: GoogleFonts.sanchez(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -142,16 +143,12 @@ class _ClientMainState extends State<ClientMain> {
                   ),
                   AppDrawerTile(
                     index: 5,
-                    onTap: () {
-                      updateState(5);
-                      Navigator.pushNamed(context, RouteManager.editAccountPage,
-                          arguments: Null);
-                    },
+                    onTap: updateState(5),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const AppDrawerDivider(),
+                  AppDrawerDivider(),
                   const SizedBox(
                     height: 10,
                   ),

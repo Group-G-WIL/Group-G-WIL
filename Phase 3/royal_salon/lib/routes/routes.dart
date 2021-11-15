@@ -1,62 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:royal_salon/pages/client/FindSalon/Book.dart';
+import 'package:royal_salon/pages/client/FindSalon/receipt.dart';
+import 'package:royal_salon/pages/client/FindSalon/reviewsSalon.dart';
+import 'package:royal_salon/pages/client/FindSalon/services.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
-import 'package:royal_salon/pages/client/findsalon.dart';
+import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
-import 'package:royal_salon/routes/edit_account.dart';
 
 class RouteManager {
   static const String loginPage = '/';
+  static const String reviewsPage = '/reviewsPage';
+  static const String bookPage = '/bookPage';
+  static const String recieptPage = '/recieptPage';
+  static const String servicesPage = '/servicesPage';
   static const String findsalonPage = '/findsalonPage';
   static const String salonlogin = '/salonLogin';
   static const String registerPage = '/registerPage';
   static const String clientPage = '/clientPage';
   static const String salonPage = '/SalonPage';
   static const String loadingPage = '/loadingPage';
-  static const String editAccountPage = '/editAccountPage';
-  
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case loginPage:
         return MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => Login(),
         );
 
       case registerPage:
         return MaterialPageRoute(
-          builder: (context) => const Register(),
+          builder: (context) => Register(),
         );
 
+      case bookPage:
+        return MaterialPageRoute(
+          builder: (context) => BookNow(),
+        );
+
+      case reviewsPage:
+        return MaterialPageRoute(
+          builder: (context) => Reviews(),
+        );
+
+      case recieptPage:
+        return MaterialPageRoute(
+          builder: (context) => Reciept(),
+        );
       case salonlogin:
         return MaterialPageRoute(
-          builder: (context) => const SalonLogin(),
+          builder: (context) => SalonLogin(),
         );
       case findsalonPage:
         return MaterialPageRoute(
-          builder: (context) => const SelectSalon(),
+          builder: (context) => SelectSalon(),
         );
       case clientPage:
         return MaterialPageRoute(
-          builder: (context) => const ClientMain(),
+          builder: (context) => ClientMain(),
+        );
+      case servicesPage:
+        return MaterialPageRoute(
+          builder: (context) => Services(),
         );
 
       case salonPage:
         return MaterialPageRoute(
-          builder: (context) => const SalonPage(),
+          builder: (context) => SalonPage(),
         );
 
       case loadingPage:
         return MaterialPageRoute(
-          builder: (context) => const Loading(),
-        );
-
-      case editAccountPage:
-        return MaterialPageRoute(
-          builder: (context) => const EditAccount(),
+          builder: (context) => Loading(),
         );
 
       default:
