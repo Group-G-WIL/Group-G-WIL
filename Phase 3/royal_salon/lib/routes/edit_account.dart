@@ -122,7 +122,7 @@ class _EditAccountState extends State<EditAccount> {
                 //   labelText: 'Please confirm your password',
                 // ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: EdgeInsets.only(top: 8.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.purple),
                     onPressed: () {
