@@ -38,6 +38,8 @@ class _SalonPageState extends State<SalonPage> {
     ),
   ];
 
+  //String replace;
+
   VoidCallback updateState(int index) {
     return () {
       setState(() {
