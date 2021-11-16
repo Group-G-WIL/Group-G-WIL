@@ -28,6 +28,8 @@ class FindSalon extends StatelessWidget {
 }
 
 class SelectSalon extends StatefulWidget {
+  const SelectSalon({Key? key}) : super(key: key);
+
   @override
   _SelectSalonState createState() => _SelectSalonState();
 }
@@ -93,23 +95,21 @@ class _SelectSalonState extends State<SelectSalon> {
       ),
       barrierColor: Colors.orange.withOpacity(0.2),
       context: context,
-      builder: (context) => Container(
+      builder: (context) => SizedBox(
             height: 180,
             child: Column(
               children: [
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Salon name',
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text('Salon Address')
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Salon name',
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('Salon Address')
+                  ],
                 ),
                 const SizedBox(
                   height: 20,
@@ -178,9 +178,9 @@ class _SelectSalonState extends State<SelectSalon> {
         ),
         barrierColor: Colors.orange.withOpacity(0.2),
         context: context,
-        builder: (context) => Container(
+        builder: (context) => const SizedBox(
           height: 100,
-          child: const Text(
+          child: Text(
             'Sorry the salon will open at //time',
             textAlign: TextAlign.center,
           ),

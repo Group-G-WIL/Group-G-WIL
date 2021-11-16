@@ -82,40 +82,38 @@ class _ClientMainState extends State<ClientMain> {
                 ),
               ),
               padding: const EdgeInsets.all(0),
-              child: Container(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const CircleAvatar(
+                    radius: 42,
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'John Rambo',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    const CircleAvatar(
-                      radius: 42,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'john@rambo.com',
+                    style: GoogleFonts.sanchez(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'John Rambo',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'john@rambo.com',
-                      style: GoogleFonts.sanchez(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Expanded(
