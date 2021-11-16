@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:royal_salon/pages/Promo_page.dart';
 import 'package:royal_salon/pages/client/FindSalon/book.dart';
 import 'package:royal_salon/pages/client/FindSalon/receipt.dart';
 import 'package:royal_salon/pages/client/FindSalon/reviews_salon.dart';
 import 'package:royal_salon/pages/client/FindSalon/services.dart';
+import 'package:royal_salon/pages/Promo_Addition.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
@@ -27,6 +29,8 @@ class RouteManager {
   static const String salonPage = '/SalonPage';
   static const String loadingPage = '/loadingPage';
   static const String editAccountPage = '/editAccountPage';
+  static const String promotionsPage = '/promotions';
+  static const String addPromo = '/PromoAdd';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -79,6 +83,13 @@ class RouteManager {
       case loadingPage:
         return MaterialPageRoute(
           builder: (context) => Loading(),
+        );
+
+      case promotionsPage:
+        return MaterialPageRoute(builder: (context) => Promotions());
+      case addPromo:
+        return MaterialPageRoute(
+          builder: (context) => PromoAdd(),
         );
 
       case editAccountPage:

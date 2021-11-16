@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
@@ -96,7 +98,10 @@ class _SalonLoginState extends State<SalonLogin> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
+
                         child: const Text('Login'),
+
+                        // ignore: prefer_const_constructors
                       ),
                     ),
                     TextButton(

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -81,7 +83,9 @@ class _ClientMainState extends State<ClientMain> {
                   image: AssetImage('assets/images/drawer.jpg'),
                 ),
               ),
+
               padding: const EdgeInsets.all(0),
+              // ignore: avoid_unnecessary_containers1,
               child: Container(
                 child: Column(
                   children: [
