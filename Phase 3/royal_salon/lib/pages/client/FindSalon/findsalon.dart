@@ -11,23 +11,27 @@ class FindSalon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pushNamed(RouteManager.findsalonPage);
-          },
-          style: ElevatedButton.styleFrom(
-            primary: Colors.purple,
+        backgroundColor: Colors.blue[50],
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteManager.findsalonPage);
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.purple,
+            ),
+            child: Row(children: const [
+              Text('Find a salon'),
+              Icon(Icons.search_off_outlined)
+            ]),
           ),
-          child: const Text('Find a salon'),
-        ),
-      ),
-    );
+        ));
   }
 }
 
 class SelectSalon extends StatefulWidget {
+  const SelectSalon({Key? key}) : super(key: key);
+
   @override
   _SelectSalonState createState() => _SelectSalonState();
 }
