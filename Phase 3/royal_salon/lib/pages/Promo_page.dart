@@ -56,7 +56,7 @@ class _PromotionsState extends State<Promotions>
                 color: Colors.white,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Card(
@@ -84,7 +84,7 @@ class _PromotionsState extends State<Promotions>
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -95,7 +95,7 @@ class _PromotionsState extends State<Promotions>
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(

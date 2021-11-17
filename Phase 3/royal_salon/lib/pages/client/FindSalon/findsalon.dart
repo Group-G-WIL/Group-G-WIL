@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:royal_salon/pages/client/FindSalon/map.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
@@ -20,10 +21,7 @@ class FindSalon extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               primary: Colors.purple,
             ),
-            child: Row(children: const [
-              Text('Find a salon'),
-              Icon(Icons.search_off_outlined)
-            ]),
+            child: Row(children: const [Text('Find a salon')]),
           ),
         ));
   }
@@ -68,8 +66,13 @@ class _SelectSalonState extends State<SelectSalon> {
                       height: 30,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.home_work_outlined),
-                      onPressed: showBottomSheet,
+                      icon: const Icon(Icons.pin_drop_outlined),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Locationmap(),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
