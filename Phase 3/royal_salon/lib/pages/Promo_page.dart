@@ -30,16 +30,16 @@ class _PromotionsState extends State<Promotions>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          ' Promotions ',
-          style: TextStyle(
-            fontSize: 15.0,
-          ),
-        ),
-        backgroundColor: Colors.purple[600],
-        elevation: 10.0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     ' Promotions ',
+      //     style: TextStyle(
+      //       fontSize: 15.0,
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.purple[600],
+      //   elevation: 10.0,
+      // ),
       body: Container(
         height: 805.0,
         decoration: const BoxDecoration(

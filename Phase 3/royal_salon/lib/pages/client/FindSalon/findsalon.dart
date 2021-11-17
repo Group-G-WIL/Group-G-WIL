@@ -4,32 +4,31 @@ import 'package:royal_salon/pages/client/FindSalon/map.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
-class FindSalon extends StatelessWidget {
-  const FindSalon({
+class findSalon extends StatelessWidget {
+  const findSalon({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[50],
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(RouteManager.findsalonPage);
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-            ),
-            child: Row(children: const [Text('Find a salon')]),
+      backgroundColor: Colors.blue[50],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(RouteManager.findsalonPage);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.purple,
           ),
-        ));
+          child: Text('Find a salon'),
+        ),
+      ),
+    );
   }
 }
 
 class SelectSalon extends StatefulWidget {
-  const SelectSalon({Key? key}) : super(key: key);
-
   @override
   _SelectSalonState createState() => _SelectSalonState();
 }
@@ -38,7 +37,7 @@ class _SelectSalonState extends State<SelectSalon> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Find a Salon'),
+          title: Text('Find a Salon'),
         ),
         backgroundColor: Colors.cyan[100],
         body: Column(
@@ -51,7 +50,7 @@ class _SelectSalonState extends State<SelectSalon> {
                   height: 50,
                   width: 150,
                   //text control
-                  child: const Text('Enter your location'),
+                  child: Text('Enter your location'),
                 ),
               ),
             ),
@@ -62,23 +61,18 @@ class _SelectSalonState extends State<SelectSalon> {
               child: Center(
                 child: Column(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 30,
                     ),
-                    // IconButton(
-                    //   icon: const Icon(Icons.pin_drop_outlined),
-                    //   onPressed: () => Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const Locationmap(),
-                    //     ),
-                    //   ),
-                    // ),
-                    const SizedBox(
+                    IconButton(
+                      icon: Icon(Icons.home_work_outlined),
+                      onPressed: showBottomSheet,
+                    ),
+                    SizedBox(
                       height: 10,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.home_work_outlined),
+                      icon: Icon(Icons.home_work_outlined),
                       onPressed: showBottomSheet1,
                     ),
                   ],
