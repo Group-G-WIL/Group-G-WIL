@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:backendless_sdk/backendless_sdk.dart';
 
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ void loginUserInUI(BuildContext context,
     {required String email, required String password}) async {
   FocusManager.instance.primaryFocus?.unfocus();
   if (email.isEmpty || password.isEmpty) {
-    showSnackBar(context, 'Please enter both fields!');
+    showSnackBar(context, 'Please enter All fields!');
   } else {
     String result = await context
         .read<UserService>()
@@ -73,7 +75,7 @@ void loginSalonInUI(BuildContext context,
     {required String email, required String password}) async {
   FocusManager.instance.primaryFocus?.unfocus();
   if (email.isEmpty || password.isEmpty) {
-    showSnackBar(context, 'Please enter both fields!');
+    showSnackBar(context, 'Please enter All fields!');
   } else {
     String result = await context
         .read<UserService>()
@@ -84,6 +86,19 @@ void loginSalonInUI(BuildContext context,
       //context.read<SalonService>().getTodos(email);
       Navigator.of(context).popAndPushNamed(RouteManager.salonPage);
     }
+  }
+}
+
+void AddpromoUI(BuildContext context,
+    {required String styleName,
+    required double promoDiscount,
+    required DateRangePickerDialog promoDuration}) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  if (styleName.isEmpty ||
+      promoDiscount.isNegative ||
+      promoDiscount.isInfinite ||
+      promoDiscount.isNaN) {
+    showSnackBar(context, 'Please Enter the Missing fields');
   }
 }
 

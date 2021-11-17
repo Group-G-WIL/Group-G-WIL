@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,14 +21,12 @@ class _SalonPageState extends State<SalonPage> {
       child: Text('Home'),
     ),
     Center(
-      child: Text('Inbox'),
+      child: Text('Inbox your messages in here'),
     ),
     Center(
       child: Text('Reviews'),
     ),
-    Center(
-      child: Text('Promotions'),
-    ),
+    Center(child: Text('Promotions')),
     Center(
       child: Text('Schedule'),
     ),
@@ -39,12 +38,14 @@ class _SalonPageState extends State<SalonPage> {
     ),
   ];
 
+  //String replace;
+
   VoidCallback updateState(int index) {
     return () {
       setState(() {
         indexClicked = index;
       });
-      Navigator.pop(context);
+      // Navigator.pop(context);
     };
   }
 
@@ -120,10 +121,13 @@ class _SalonPageState extends State<SalonPage> {
                     onTap: updateState(2),
                   ),
                   AppDrawerTile(
-                    index: 3,
-                    onTap:
-                      updateState(3),
-                  ),
+                      index: 3,
+                      onTap: () {
+                        updateState(3);
+                        Navigator.pushNamed(
+                            context, RouteManager.promotionsPage,
+                            arguments: null);
+                      }),
                   AppDrawerTile(
                     index: 4,
                     onTap: updateState(4),
@@ -133,7 +137,7 @@ class _SalonPageState extends State<SalonPage> {
                     onTap: updateState(5),
                   ),
                   AppDrawerTile(
-                    index: 6,               
+                    index: 6,
                     onTap: () {
                       updateState(6);
                       Navigator.pushNamed(context, RouteManager.editAccountPage,
