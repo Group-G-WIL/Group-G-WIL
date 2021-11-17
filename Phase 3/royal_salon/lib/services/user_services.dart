@@ -106,7 +106,6 @@ class UserService with ChangeNotifier {
     } else {
       result = 'NOT OK 3';
     }
-
     return result;
   }
 
