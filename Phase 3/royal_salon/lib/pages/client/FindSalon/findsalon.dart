@@ -65,15 +65,15 @@ class _SelectSalonState extends State<SelectSalon> {
                     const SizedBox(
                       height: 30,
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.pin_drop_outlined),
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Locationmap(),
-                        ),
-                      ),
-                    ),
+                    // IconButton(
+                    //   icon: const Icon(Icons.pin_drop_outlined),
+                    //   onPressed: () => Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const Locationmap(),
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 10,
                     ),
