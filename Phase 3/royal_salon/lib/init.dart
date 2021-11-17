@@ -2,7 +2,7 @@ import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
-import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/services/user_services.dart';
 
 class InitApp {
   static const String apiKeyAndroid = '06F80D28-220D-462C-A81F-C4486CEE570A';

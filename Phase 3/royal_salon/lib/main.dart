@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
-import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/services/user_services.dart';
 
 void main() {
   runApp(const MyApp());

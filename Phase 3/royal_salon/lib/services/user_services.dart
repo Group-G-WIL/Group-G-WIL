@@ -10,8 +10,13 @@ class UserService with ChangeNotifier {
     _currentUser = null;
   }
 
+  String result = 'OK';
+
   bool _userExists = false;
   bool get userExists => _userExists;
+
+  bool _userIsClient = true;
+  bool get userIsClient => _userIsClient;
 
   set userExists(bool value) {
     _userExists = value;
@@ -25,7 +30,6 @@ class UserService with ChangeNotifier {
   String get userProgressText => _userProgressText;
 
   Future<String> resetPassword(String username) async {
-    String result = 'OK';
     _showUserProgress = true;
     _userProgressText = 'Busy sending reset instructions...please wait...';
     notifyListeners();
@@ -40,7 +44,6 @@ class UserService with ChangeNotifier {
   }
 
   Future<String> loginUser(String username, String password) async {
-    String result = 'OK';
     _showUserProgress = true;
     _userProgressText = 'Busy logging you in...please wait...';
     notifyListeners();
@@ -58,7 +61,6 @@ class UserService with ChangeNotifier {
   }
 
   Future<String> logoutUser() async {
-    String result = 'OK';
     _showUserProgress = true;
     _userProgressText = 'Busy signing you out...please wait...';
     notifyListeners();
@@ -71,8 +73,6 @@ class UserService with ChangeNotifier {
   }
 
   Future<String> checkIfUserLoggedIn() async {
-    String result = 'OK';
-
     bool? validLogin = await Backendless.userService
         .isValidLogin()
         .onError((error, stackTrace) {
@@ -96,13 +96,13 @@ class UserService with ChangeNotifier {
           _currentUser = BackendlessUser.fromJson(mapOfCurrentUser);
           notifyListeners();
         } else {
-          result = 'NOT OK';
+          result = 'NOT OK 1';
         }
       } else {
-        result = 'NOT OK';
+        result = 'NOT OK 2';
       }
     } else {
-      result = 'NOT OK';
+      result = 'NOT OK 3';
     }
 
     return result;
@@ -129,13 +129,18 @@ class UserService with ChangeNotifier {
   }
 
   Future<String> createUser(BackendlessUser user) async {
-    String result = 'OK';
     _showUserProgress = true;
     _userProgressText = 'Creating a new user...please wait...';
     notifyListeners();
     try {
       await Backendless.userService.register(user);
-      SalonEntry emptyEntry = SalonEntry(salons: {}, username: user.email);
+      SalonEntry emptyEntry = SalonEntry(
+        salons: {},
+        username: user.email,
+        // salonName: user.getProperty('salon_name'),
+        // salonAddress: user.getProperty('salon_address'),
+        // salonBankingDetails: user.getProperty('salon_banking_details')
+      );
       await Backendless.data
           .of('SalonEntry')
           .save(emptyEntry.toJson())
@@ -150,34 +155,38 @@ class UserService with ChangeNotifier {
     return result;
   }
 
-  Future<String> update(BackendlessUser user) async {
-    String result = 'OK';
+  Future<bool> checkIfClientOrSalon(String username) async {
+    DataQueryBuilder queryBuilder = DataQueryBuilder()
+      ..whereClause = "email = '$username'";
+
+    await Backendless.data
+        .withClass<BackendlessUser>()
+        .find(queryBuilder)
+        .then((value) {
+      if (value == null || value.isEmpty) {
+        _userIsClient = false;
+        notifyListeners();
+      } else {
+        _userIsClient = true;
+        notifyListeners();
+      }
+    }).onError((error, stackTrace) {
+      getHumanReadableError(error.toString());
+    });
+
+    return _userIsClient;
+  }
+
+  Future<String> update(String index, String change) async {
     _showUserProgress = true;
     _userProgressText = 'Updating user data...please wait...';
+    BackendlessUser user = BackendlessUser();
 
     notifyListeners();
     try {
-      //await Backendless.userService.update(user);
-
-      // await Backendless.data
-      //   .of('SalonEntry')
-      //   .update("email = '$email'", other/**{
-      //     'cellphone': '212-555-1212',
-      //     'name': 'Updated name',
-      //     'surname': 'New surname'}*/);
-
-      await Backendless.userService
-          .login(user.email, user.password)
-          .then((value) {
+      await Backendless.userService.getCurrentUser().then((value) {
         if (value != null) {
-          value.setProperty(
-              //'email': 'mzolisi04@gmail.com',
-              'password',
-              'mzi'
-              //'cellphone', '212-555-1212',
-              // 'name': 'Updated name',
-              // 'surname': 'New surname'
-              );
+          value.setProperty(index, change);
           notifyListeners();
         } else {
           result = 'NOT OK 6';
@@ -186,6 +195,15 @@ class UserService with ChangeNotifier {
     } catch (e) {
       result = getHumanReadableError(e.toString() + '  6');
     }
+
+    debugPrint('Current name: ${user.getProperty('name')}');
+    // BackendlessUser user = new BackendlessUser();
+    
+    // user.setProperty("age", 32);
+    // Backendless.userService.update(user).then((user) {
+    //   debugPrint("User has been updated");
+    //   debugPrint("Age - ${user!.getProperty("age")}");
+    // });
 
     try {
       Backendless.userService.update(user).onError((error, stackTrace) {

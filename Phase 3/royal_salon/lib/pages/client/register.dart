@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/services/user_services.dart';
 import 'package:royal_salon/widgets/app_progress_indicator.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
 import 'package:tuple/tuple.dart';
@@ -137,7 +137,7 @@ class _RegisterState extends State<Register> {
                             password: passwordController.text.trim(),
                             name: nameController.text.trim(),
                             surname: surnameController.text.trim(),
-                            cellphone: phonenumberController.toString().trim(),
+                            cellphone: phonenumberController.text.trim(),
                             confirm: confirmController.text.trim()
                           );
                         },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/services/user_services.dart';
 import 'package:royal_salon/widgets/app_progress_indicator.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
 import 'package:tuple/tuple.dart';

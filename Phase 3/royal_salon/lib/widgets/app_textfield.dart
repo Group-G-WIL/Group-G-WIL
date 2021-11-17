@@ -5,12 +5,14 @@ class AppTextField extends StatelessWidget {
       {Key? key,
       required this.controller,
       this.labelText = "",
+      this.textFieldHeaderFlex = 0,
+      this.textFieldFlex = 5,
       this.textFieldHeader = "",
       this.textFieldHeaderFontSize = 15.0,
       this.textFieldHeaderColor = Colors.white,
       required this.keyboardType,
       this.hideText = false,
-      this.textColor = Colors.white,
+      this.textFieldColor = Colors.white,
       this.focusedBorderColor = Colors.white,
       this.enabledBorderColor = Colors.grey,
       this.labelStyleColor = Colors.white})
@@ -18,12 +20,14 @@ class AppTextField extends StatelessWidget {
 
   final TextEditingController controller;
   final String labelText;
+  final int textFieldHeaderFlex;
   final String textFieldHeader;
   final double textFieldHeaderFontSize;
   final Color textFieldHeaderColor;
   final TextInputType keyboardType;
   final bool hideText;
-  final Color? textColor;
+  final Color? textFieldColor;
+  final int textFieldFlex;
   final Color focusedBorderColor;
   final Color enabledBorderColor;
   final Color? labelStyleColor;
@@ -36,17 +40,17 @@ class AppTextField extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              flex: 1,
+              flex: textFieldHeaderFlex,
               child: Text(textFieldHeader,
                   style: TextStyle(
                       fontSize: textFieldHeaderFontSize,
                       color: textFieldHeaderColor))),
           const SizedBox(width: 5.0),
           Expanded(
-            flex: 4,
+            flex: textFieldFlex,
             child: TextField(
               obscureText: hideText,
-              style: TextStyle(color: textColor),
+              style: TextStyle(color: textFieldColor),
               cursorColor: Colors.white,
               controller: controller,
               keyboardType: keyboardType,

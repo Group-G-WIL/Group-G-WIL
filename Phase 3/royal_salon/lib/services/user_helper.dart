@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
 
-import 'package:royal_salon/services/userervices.dart';
+import 'package:royal_salon/services/user_services.dart';
 import 'package:royal_salon/widgets/dialogs.dart';
 
 void createNewUserInUI(BuildContext context,
@@ -38,7 +38,7 @@ void createNewUserInUI(BuildContext context,
       ..putProperties({
         'name': name.trim(),
         'surname': surname.trim(),
-        'cellphone': cellphone..toString().trim()
+        'cellphone': cellphone.toString().trim()
       });
 
     String result = await context.read<UserService>().createUser(user);
@@ -116,43 +116,66 @@ void logoutUserInUI(BuildContext context) async {
 void updateUserDatainUI(
     BuildContext context,
     String email,
-    /**String password,*/
+    String password,
     String confirm,
     String name,
     String surname,
     String cellphone) async {
   FocusManager.instance.primaryFocus?.unfocus();
+  String result;
 
-  if (/**email.isEmpty ||*/
-      name.isEmpty ||
-          surname.isEmpty ||
-          cellphone
-              .isEmpty /**||
-      password.isEmpty ||
-      confirm.isEmpty*/
+  if (name.isEmpty &&
+      surname.isEmpty &&
+      cellphone.isEmpty &&
+      password.isEmpty &&
+      confirm.isEmpty
       ) {
-    showSnackBar(context, 'Missing changes');
-  } else {
-    // String result = await context
-    //     .read<UserService>()
-    //     .update("email = '${email.toString()}'", {
-    //   'name': name.toString().trim(),
-    //   'surname': surname.toString().trim(),
-    //   'cellphone': cellphone.toString().trim()
-    // });
-    String result = await context.read<UserService>().update(BackendlessUser()
-      ..putProperties({
-        //'email': email.toString().trim(),
-        'name': name.toString().trim(),
-        'surname': surname.toString().trim(),
-        'cellphone': cellphone.toString().trim(),
-        //'password': password.toString().trim(),
-      }));
-    if (result != 'OK') {
-      showSnackBar(context, result);
-    } else {
-      showSnackBar(context, 'User profile successfully updated!');
-      Navigator.pop(context);
+    showSnackBar(context, 'Nothing to change');
+  }
+    
+    if (name.isNotEmpty) {
+      result = await context.read<UserService>().update('name', name.toString().trim());
+      if (result != 'OK') {
+        showSnackBar(context, result);
+      } else {
+        showSnackBar(context, 'User name successfully updated!');
+        Navigator.pop(context);
+      }
+    }
+  
+    if(surname.isNotEmpty){
+      result = await context.read<UserService>().update('surname', surname.toString().trim());
+      if (result != 'OK') {
+        showSnackBar(context, result);
+      } else {
+        showSnackBar(context, 'User surname successfully updated!');
+        Navigator.pop(context);
+      }
+    }
+    if(cellphone.isNotEmpty){
+      result = await context.read<UserService>().update('cellphone', password.toString().trim());
+        if (result != 'OK') {
+          showSnackBar(context, result);
+        } else {
+          showSnackBar(context, 'User cellphone successfully updated!');
+          Navigator.pop(context);
+        }
+    }
+    if(password.isNotEmpty && confirm.isNotEmpty){
+      if (password.toString() == confirm.toString()){
+        result = await context.read<UserService>().update('password', password.toString().trim());
+        if (result != 'OK') {
+          showSnackBar(context, result);
+        } else {
+          showSnackBar(context, 'User password successfully updated!');
+          Navigator.pop(context);
+        }
+      }
+      else{
+        showSnackBar(context, 'Passwords do not match!');
+      }
     }
   }
-}
+
+
+
