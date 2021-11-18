@@ -1,17 +1,15 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/widgets/dialogs.dart';
 
-class Promotions extends StatefulWidget {
-  const Promotions({Key? key}) : super(key: key);
+class ServiesSalon extends StatefulWidget {
+  const ServiesSalon({Key? key}) : super(key: key);
 
   @override
-  _PromotionsState createState() => _PromotionsState();
+  _ServiesSalonState createState() => _ServiesSalonState();
 }
 
-class _PromotionsState extends State<Promotions>
+class _ServiesSalonState extends State<ServiesSalon>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -30,16 +28,6 @@ class _PromotionsState extends State<Promotions>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     ' Promotions ',
-      //     style: TextStyle(
-      //       fontSize: 15.0,
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.purple[600],
-      //   elevation: 10.0,
-      // ),
       body: Container(
         height: 805.0,
         decoration: const BoxDecoration(
@@ -49,7 +37,7 @@ class _PromotionsState extends State<Promotions>
           children: [
             const SizedBox(height: 15),
             const Text(
-              'Promotions List',
+              'List of Services',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -68,15 +56,14 @@ class _PromotionsState extends State<Promotions>
                         SizedBox(
                           height: 10,
                         ),
-                        Text('Product On Promo   : xxx'),
+                        Text('HairStyle   : xxx'),
                         SizedBox(
                           height: 10,
                         ),
-                        Text('Promotion Discount   : xxx'),
+                        Text('Price   : xxx'),
                         SizedBox(
                           height: 10,
                         ),
-                        Text('Product On Promo   : xxx'),
                         SizedBox(
                           height: 10,
                         ),
@@ -111,7 +98,7 @@ class _PromotionsState extends State<Promotions>
                                   fontSize: 20.0,
                                 ),
                                 content: const Text(
-                                    'Are you sure you want to Delete This file?'),
+                                    'Are you sure you want to Delete This Service?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
@@ -123,7 +110,9 @@ class _PromotionsState extends State<Promotions>
                                   TextButton(
                                     onPressed: () {
                                       showSnackBar(context, 'Deleted!');
-                                      Navigator.pop(context);
+                                      Navigator.pop(
+                                        context,
+                                      );
                                     },
                                     child: const Text(' Yes '),
                                   ),
@@ -131,7 +120,7 @@ class _PromotionsState extends State<Promotions>
                           },
                         );
                       },
-                      child: const Text('Delete'),
+                      child: const Text('Remove'),
                     ),
                   ],
                 ),
@@ -140,9 +129,9 @@ class _PromotionsState extends State<Promotions>
             ElevatedButton(
                 style: const ButtonStyle(),
                 onPressed: () {
-                  Navigator.pushNamed(context, RouteManager.addPromo);
+                  Navigator.pushNamed(context, RouteManager.addServices);
                 },
-                child: const Text('Add New promo')),
+                child: const Text('Add Services')),
           ],
         ),
       ),

@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
-import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
+import 'package:royal_salon/pages/client/FindSalon/Findsalon.dart';
+import 'package:royal_salon/pages/client/bookings.dart';
+import 'package:royal_salon/pages/client/favourites.dart';
+
 import 'package:royal_salon/routes/edit_account.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/routes/routes.dart';
 
 var indexClicked = 0;
 
@@ -31,15 +33,11 @@ class _ClientMainState extends State<ClientMain> {
     //
 
     //
-    Center(
-      child: Text('Bookings'), //you can remove this and only call your state
-    ),
+    Booking(),
     //
 
     //
-    Center(
-      child: Text('Favourites'),
-    ),
+    Favourites(),
     //
 
     //

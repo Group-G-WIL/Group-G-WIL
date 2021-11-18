@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:royal_salon/default/default.dart';
 import 'package:royal_salon/pages/Promo_page.dart';
+import 'package:royal_salon/pages/salon_owner/home.dart';
+import 'package:royal_salon/pages/salon_owner/schedule.dart';
 import 'package:royal_salon/routes/edit_account.dart';
-import 'package:royal_salon/routes/routes.dart';
+
 import 'package:royal_salon/services/user_helper.dart';
 
 var indexClicked = 0;
@@ -19,9 +21,7 @@ class SalonPage extends StatefulWidget {
 
 class _SalonPageState extends State<SalonPage> {
   final pages = [
-    Center(
-      child: Text('Home'), //you can remove this and only call your state
-    ),
+    ServiesSalon(),
     Center(
       child: Text('Inbox'),
     ),
@@ -29,9 +29,7 @@ class _SalonPageState extends State<SalonPage> {
       child: Text('Reviews'),
     ),
     Promotions(), //please just call your state here like this dont change any thing on the body
-    Center(
-      child: Text('Schedule'),
-    ),
+    Schedule(),
     Center(
       child: Text('Wallet'),
     ),

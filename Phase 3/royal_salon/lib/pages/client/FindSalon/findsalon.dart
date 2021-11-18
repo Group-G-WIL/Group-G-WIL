@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:royal_salon/pages/client/FindSalon/map.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
-class findSalon extends StatelessWidget {
-  const findSalon({
+class FindSalon extends StatelessWidget {
+  const FindSalon({
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +20,7 @@ class findSalon extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
           ),
-          child: Text('Find a salon'),
+          child: const Text('Find a salon'),
         ),
       ),
     );
@@ -29,6 +28,8 @@ class findSalon extends StatelessWidget {
 }
 
 class SelectSalon extends StatefulWidget {
+  const SelectSalon({Key? key}) : super(key: key);
+
   @override
   _SelectSalonState createState() => _SelectSalonState();
 }
@@ -37,7 +38,7 @@ class _SelectSalonState extends State<SelectSalon> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Find a Salon'),
+          title: const Text('Find a Salon'),
         ),
         backgroundColor: Colors.cyan[100],
         body: Column(
@@ -50,7 +51,7 @@ class _SelectSalonState extends State<SelectSalon> {
                   height: 50,
                   width: 150,
                   //text control
-                  child: Text('Enter your location'),
+                  child: const Text('Enter your location'),
                 ),
               ),
             ),
@@ -61,18 +62,18 @@ class _SelectSalonState extends State<SelectSalon> {
               child: Center(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     IconButton(
-                      icon: Icon(Icons.home_work_outlined),
+                      icon: const Icon(Icons.home_work_outlined),
                       onPressed: showBottomSheet,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     IconButton(
-                      icon: Icon(Icons.home_work_outlined),
+                      icon: const Icon(Icons.home_work_outlined),
                       onPressed: showBottomSheet1,
                     ),
                   ],
