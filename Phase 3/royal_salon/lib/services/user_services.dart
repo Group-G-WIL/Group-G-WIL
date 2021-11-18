@@ -71,6 +71,8 @@ class UserService with ChangeNotifier {
     });
     _showUserProgress = false;
     notifyListeners();
+
+    debugPrint(result);
     return result;
   }
 
@@ -106,6 +108,8 @@ class UserService with ChangeNotifier {
     } else {
       result = 'NOT OK 3';
     }
+
+    debugPrint(result);
     return result;
   }
 
@@ -153,6 +157,8 @@ class UserService with ChangeNotifier {
     }
     _showUserProgress = false;
     notifyListeners();
+
+    debugPrint(result);
     return result;
   }
 
@@ -175,6 +181,7 @@ class UserService with ChangeNotifier {
       getHumanReadableError(error.toString());
     });
 
+    debugPrint(result);
     return _userIsClient;
   }
 
@@ -199,7 +206,7 @@ class UserService with ChangeNotifier {
 
     debugPrint('Current name: ${user.getProperty('name')}');
     // BackendlessUser user = new BackendlessUser();
-    
+
     // user.setProperty("age", 32);
     // Backendless.userService.update(user).then((user) {
     //   debugPrint("User has been updated");
@@ -216,6 +223,8 @@ class UserService with ChangeNotifier {
     //result = '5: no null yet';
     _showUserProgress = false;
     notifyListeners();
+
+    debugPrint(result);
     return result;
   }
 }

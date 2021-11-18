@@ -2,20 +2,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:royal_salon/pages/Promo_page.dart';
-import 'package:royal_salon/pages/client/FindSalon/book.dart';
-import 'package:royal_salon/pages/client/FindSalon/receipt.dart';
-import 'package:royal_salon/pages/client/FindSalon/reviews_salon.dart';
-import 'package:royal_salon/pages/client/FindSalon/services.dart';
+import 'package:royal_salon/pages/client/find_salon/book.dart';
+import 'package:royal_salon/pages/client/find_salon/receipt.dart';
+import 'package:royal_salon/pages/client/find_salon/reviews_salon.dart';
+import 'package:royal_salon/pages/client/find_salon/services.dart';
 import 'package:royal_salon/pages/Promo_Addition.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
-import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
+import 'package:royal_salon/pages/client/find_salon/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
 import 'package:royal_salon/pages/salon_owner/add_services.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
 import 'package:royal_salon/routes/edit_account.dart';
+import 'package:royal_salon/pages/client/find_salon/get_directions.dart';
 
 class RouteManager {
   static const String loginPage = '/';
@@ -33,6 +34,7 @@ class RouteManager {
   static const String promotionsPage = '/promotions';
   static const String addPromo = '/PromoAdd';
   static const String addServices = '/addServices';
+  static const String getDirectionsPage = '/getDirectionsPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -98,10 +100,15 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => EditAccount(),
         );
+
       case addServices:
         return MaterialPageRoute(
           builder: (context) => ServiceAdd(),
         );
+
+      // case getDirectionsPage:
+      //   return MaterialPageRoute(builder: (context) => GetDirections());
+
       default:
         throw const FormatException('Route not found! Check routes again!');
     }

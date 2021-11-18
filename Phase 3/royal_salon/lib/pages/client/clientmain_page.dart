@@ -3,13 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/src/provider.dart';
 import 'package:royal_salon/default/default.dart';
-import 'package:royal_salon/pages/client/FindSalon/Findsalon.dart';
 import 'package:royal_salon/pages/client/bookings.dart';
 import 'package:royal_salon/pages/client/favourites.dart';
-
 import 'package:royal_salon/routes/edit_account.dart';
+import 'package:royal_salon/pages/client/find_salon/findsalon.dart';
 import 'package:royal_salon/services/user_helper.dart';
+import 'package:royal_salon/services/user_services.dart';
 
 var indexClicked = 0;
 
@@ -60,8 +61,10 @@ class _ClientMainState extends State<ClientMain> {
     };
   }
 
+ 
   @override
   Widget build(BuildContext context) {
+    String email = context.read<UserService>().currentUser!.email;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -106,7 +109,7 @@ class _ClientMainState extends State<ClientMain> {
                       height: 5,
                     ),
                     Text(
-                      'john@rambo.com',
+                      email,
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,

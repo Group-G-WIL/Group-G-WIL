@@ -17,6 +17,9 @@ class LocationService {
     var placeId = json['candidates'][0]['place_id'] as String;
 
     debugPrint(placeId);
+    debugPrint(placeId);
+    debugPrint(placeId);
+    debugPrint(placeId);
     return placeId;
   }
 
@@ -34,7 +37,8 @@ class LocationService {
     return results;
   }
 
-  Future<Map<String,dynamic>> getDirections(String origin, String destination)async{
+  Future<Map<String, dynamic>> getDirections(
+      String origin, String destination) async {
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&key=$key';
 
@@ -48,7 +52,8 @@ class LocationService {
       'start_location': json['routes'][0]['legs'][0]['start_location'],
       'end_location': json['routes'][0]['legs'][0]['end_location'],
       'polyline': json['routes'][0]['overview_polyline']['points'],
-      'polyline_decoded': PolylinePoints().decodePolyline(json['routes'][0]['overview_polyline']['points']),
+      'polyline_decoded': PolylinePoints()
+          .decodePolyline(json['routes'][0]['overview_polyline']['points']),
     };
 
     debugPrint(results.toString());
