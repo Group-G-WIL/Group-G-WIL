@@ -23,7 +23,7 @@ class ClientMain extends StatefulWidget {
 class _ClientMainState extends State<ClientMain> {
   final pages = const [
     //
-    findSalon(), //please just call your state here like this dont change any thing on the body
+    FindSalon(), //please just call your state here like this dont change any thing on the body
     //
 
     //
