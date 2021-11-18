@@ -84,7 +84,7 @@ class _PromoAddState extends State<PromoAdd> {
                           Icons.camera_alt_outlined,
                           size: 100,
                         )),
-                    const SizedBox(
+                    SizedBox(
                       height: 55,
                     ),
                     ElevatedButton(
