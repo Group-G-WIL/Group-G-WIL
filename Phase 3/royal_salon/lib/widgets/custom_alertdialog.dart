@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/widgets/app_textfield.dart';
-import 'package:royal_salon/routes/edit_account.dart';
 
 class CustomAlertdialog extends StatelessWidget {
   const CustomAlertdialog({

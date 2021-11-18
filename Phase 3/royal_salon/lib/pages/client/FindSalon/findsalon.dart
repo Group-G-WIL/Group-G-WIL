@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:royal_salon/pages/client/FindSalon/map.dart';
 
 import 'package:royal_salon/routes/routes.dart';
 
@@ -12,18 +11,19 @@ class FindSalon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue[50],
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(RouteManager.findsalonPage);
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.purple,
-            ),
-            child: Row(children: const [Text('Find a salon')]),
+      backgroundColor: Colors.blue[50],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(RouteManager.findsalonPage);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.purple,
           ),
-        ));
+          child: const Text('Find a salon'),
+        ),
+      ),
+    );
   }
 }
 
@@ -65,15 +65,12 @@ class _SelectSalonState extends State<SelectSalon> {
                     const SizedBox(
                       height: 30,
                     ),
-                    // IconButton(
-                    //   icon: const Icon(Icons.pin_drop_outlined),
-                    //   onPressed: () => Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const Locationmap(),
-                    //     ),
-                    //   ),
-                    // ),
+
+                    IconButton(
+                      icon: const Icon(Icons.home_work_outlined),
+                      onPressed: showBottomSheet,
+                    ),
+
                     const SizedBox(
                       height: 10,
                     ),

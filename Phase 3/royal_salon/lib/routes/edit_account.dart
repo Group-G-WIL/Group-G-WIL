@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/services/user_services.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/widgets/app_textfield.dart';
+
 import 'package:royal_salon/widgets/card_template.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/widgets/custom_alertdialog.dart';
@@ -51,16 +51,16 @@ class _EditAccountState extends State<EditAccount> {
     debugPrint(email);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Account Settings',
-          style: TextStyle(
-            fontSize: 15.0,
-          ),
-        ),
-        backgroundColor: Colors.purple[600],
-        elevation: 10.0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Account Settings',
+      //     style: TextStyle(
+      //       fontSize: 15.0,
+      //     ),
+      //   ),
+      //   backgroundColor: Colors.purple[600],
+      //   elevation: 10.0,
+      // ),
       body: Column(
         children: [
           const SizedBox(
@@ -95,15 +95,15 @@ class _EditAccountState extends State<EditAccount> {
                     context: context,
                     builder: (context) {
                       return CustomAlertdialog(
-                          firstController: passwordController,
-                          firstHeaderText: 'Password: ',
-                          secondController: confirmController,
-                          secondHeaderText: 'Confirm: ',
-                          thirdController: phonenumberController,
-                          thirdHeaderText: '', actions: [
-                            TextButton(
+                        firstController: passwordController,
+                        firstHeaderText: 'Password: ',
+                        secondController: confirmController,
+                        secondHeaderText: 'Confirm: ',
+                        thirdController: phonenumberController,
+                        thirdHeaderText: '',
+                        actions: [
+                          TextButton(
                             onPressed: () {
-                              
                               updateUserDatainUI(
                                   context,
                                   usernameController.text,
@@ -123,7 +123,8 @@ class _EditAccountState extends State<EditAccount> {
                             },
                             child: const Text('CANCEL'),
                           ),
-                          ],);
+                        ],
+                      );
                     });
               }),
           CardTemplate(
@@ -134,36 +135,38 @@ class _EditAccountState extends State<EditAccount> {
                   context: context,
                   builder: (context) {
                     return CustomAlertdialog(
-                        firstController: nameController,
-                        firstHeaderText: 'Name:',
-                        secondController: surnameController,
-                        secondHeaderText: 'Surname:',
-                        thirdController: phonenumberController,
-                        thirdHeaderText: 'Phone number:',
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              
-                              updateUserDatainUI(
-                                  context,
-                                  usernameController.text,
-                                  passwordController.text,
-                                  confirmController.text,
-                                  nameController.text,
-                                  surnameController.text,
-                                  phonenumberController.text);
+                      firstController: nameController,
+                      firstHeaderText: 'Name:',
+                      secondController: surnameController,
+                      secondHeaderText: 'Surname:',
+                      thirdController: phonenumberController,
+                      thirdHeaderText: 'Phone number:',
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            updateUserDatainUI(
+                                context,
+                                usernameController.text,
+                                passwordController.text,
+                                confirmController.text,
+                                nameController.text,
+                                surnameController.text,
+                                phonenumberController.text);
 
-                              Navigator.pop(context);
-                            },
-                            child: const Text('DONE'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('CANCEL'),
-                          ),
-      ],);
+                            Navigator.pop(context);
+                          },
+                          child: const Text('DONE'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(
+                              context,
+                            );
+                          },
+                          child: const Text('CANCEL'),
+                        ),
+                      ],
+                    );
                   });
             },
           ),
@@ -175,16 +178,15 @@ class _EditAccountState extends State<EditAccount> {
                     context: context,
                     builder: (context) {
                       return CustomAlertdialog(
-                          firstController: passwordController,
-                          firstHeaderText: 'Street:',
-                          secondController: confirmController,
-                          secondHeaderText: 'Surburb:',
-                          thirdController: phonenumberController,
-                          thirdHeaderText: 'City',
-                          actions: [
-                            TextButton(
+                        firstController: passwordController,
+                        firstHeaderText: 'Street:',
+                        secondController: confirmController,
+                        secondHeaderText: 'Surburb:',
+                        thirdController: phonenumberController,
+                        thirdHeaderText: 'City',
+                        actions: [
+                          TextButton(
                             onPressed: () {
-                              
                               updateUserDatainUI(
                                   context,
                                   usernameController.text,
@@ -204,7 +206,8 @@ class _EditAccountState extends State<EditAccount> {
                             },
                             child: const Text('CANCEL'),
                           ),
-                          ],);
+                        ],
+                      );
                     });
               }),
           CardTemplate(
@@ -214,7 +217,7 @@ class _EditAccountState extends State<EditAccount> {
                 showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialog(
+                      return const AlertDialog(
                         content: Text('No policy yet'),
                       );
                     });
@@ -284,4 +287,3 @@ class _EditAccountState extends State<EditAccount> {
     );
   }
 }
-

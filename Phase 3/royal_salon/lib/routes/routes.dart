@@ -12,6 +12,7 @@ import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
 import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
 import 'package:royal_salon/pages/client/register.dart';
+import 'package:royal_salon/pages/salon_owner/add_services.dart';
 import 'package:royal_salon/pages/salon_owner/salon_login.dart';
 import 'package:royal_salon/pages/salon_owner/salonmain_page.dart';
 import 'package:royal_salon/routes/edit_account.dart';
@@ -31,6 +32,7 @@ class RouteManager {
   static const String editAccountPage = '/editAccountPage';
   static const String promotionsPage = '/promotions';
   static const String addPromo = '/PromoAdd';
+  static const String addServices = '/addServices';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -96,7 +98,10 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => EditAccount(),
         );
-
+      case addServices:
+        return MaterialPageRoute(
+          builder: (context) => ServiceAdd(),
+        );
       default:
         throw const FormatException('Route not found! Check routes again!');
     }
