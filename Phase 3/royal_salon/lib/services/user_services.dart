@@ -38,10 +38,13 @@ class UserService with ChangeNotifier {
     await Backendless.userService
         .restorePassword(username)
         .onError((error, stackTrace) {
+      debugPrint(error.toString());
       result = getHumanReadableError(error.toString());
     });
     _showUserProgress = false;
     notifyListeners();
+
+    debugPrint(result.toString());
     return result;
   }
 
@@ -49,9 +52,11 @@ class UserService with ChangeNotifier {
     _showUserProgress = true;
     _userProgressText = 'Busy logging you in...please wait...';
     notifyListeners();
+    debugPrint('Logging in user: ');
     BackendlessUser? user = await Backendless.userService
         .login(username, password, true)
         .onError((error, stackTrace) {
+      debugPrint(error.toString());
       result = getHumanReadableError(error.toString());
     });
     if (user != null) {
@@ -59,6 +64,8 @@ class UserService with ChangeNotifier {
     }
     _showUserProgress = false;
     notifyListeners();
+
+    debugPrint(result.toString());
     return result;
   }
 
@@ -66,7 +73,9 @@ class UserService with ChangeNotifier {
     _showUserProgress = true;
     _userProgressText = 'Busy signing you out...please wait...';
     notifyListeners();
+    debugPrint('Logging out user: ');
     await Backendless.userService.logout().onError((error, stackTrace) {
+      debugPrint(error.toString());
       result = error.toString();
     });
     _showUserProgress = false;
@@ -77,23 +86,29 @@ class UserService with ChangeNotifier {
   }
 
   Future<String> checkIfUserLoggedIn() async {
+    debugPrint('Checking If User Is Valid: ');
     bool? validLogin = await Backendless.userService
         .isValidLogin()
         .onError((error, stackTrace) {
+      debugPrint(error.toString());
       result = error.toString();
     });
 
     if (validLogin != null && validLogin) {
+      debugPrint('Checking User Object Id : ');
       String? currentUserObjectId = await Backendless.userService
           .loggedInUser()
           .onError((error, stackTrace) {
+        debugPrint(error.toString());
         result = error.toString();
       });
       if (currentUserObjectId != null) {
+        debugPrint('Find by Id: $currentUserObjectId');
         Map<dynamic, dynamic>? mapOfCurrentUser = await Backendless.data
             .of("Users")
             .findById(currentUserObjectId)
             .onError((error, stackTrace) {
+          debugPrint(error.toString());
           result = error.toString();
         });
         if (mapOfCurrentUser != null) {
@@ -109,7 +124,7 @@ class UserService with ChangeNotifier {
       result = 'NOT OK 3';
     }
 
-    debugPrint(result);
+    debugPrint('Result: $result');
     return result;
   }
 

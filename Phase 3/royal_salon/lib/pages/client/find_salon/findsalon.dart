@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:royal_salon/locations/location_service.dart';
-import 'package:royal_salon/pages/client/find_salon/map.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:royal_salon/routes/routes.dart';
@@ -14,7 +13,7 @@ class FindSalon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: SelectSalon(),
     );
   }
@@ -28,26 +27,31 @@ class SelectSalon extends StatefulWidget {
 }
 
 class _SelectSalonState extends State<SelectSalon> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
-  TextEditingController _originController = TextEditingController();
-  TextEditingController _destinationController = TextEditingController();
+  final TextEditingController _originController = TextEditingController();
+  final TextEditingController _destinationController = TextEditingController();
 
-  Set<Marker> _markers = Set<Marker>();
-  Set<Polyline> _polylines = Set<Polyline>();
+  final Set<Marker> _markers = <Marker>{};
+  final Set<Polyline> _polylines = <Polyline>{};
   int _polylineCounter = 1;
 
   @override
   void initState() {
     super.initState();
 
-    _setMarker(LatLng(37.42796133580664, -122.085749655962));
+    _setMarker(const LatLng(37.42796133580664, -122.085749655962));
   }
 
   void _setMarker(LatLng point) {
     setState(() {
       _markers.add(
-        Marker(markerId: MarkerId('marker'), position: point),
+        Marker(
+            markerId: const MarkerId('marker'),
+            position: point,
+            onTap: () {
+              showBottomSheet();
+            }),
       );
     });
   }
@@ -68,7 +72,7 @@ class _SelectSalonState extends State<SelectSalon> {
     ));
   }
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
@@ -101,7 +105,7 @@ class _SelectSalonState extends State<SelectSalon> {
   //   ],
   //   width: 5,
   // );
-  
+
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.cyan[100],
@@ -116,7 +120,8 @@ class _SelectSalonState extends State<SelectSalon> {
                       TextFormField(
                         controller: _originController,
                         textCapitalization: TextCapitalization.words,
-                        decoration: InputDecoration(hintText: 'Your location'),
+                        decoration:
+                            const InputDecoration(hintText: 'Your location'),
                         onChanged: (value) {
                           debugPrint(value);
                         },
@@ -124,7 +129,8 @@ class _SelectSalonState extends State<SelectSalon> {
                       TextFormField(
                         controller: _destinationController,
                         textCapitalization: TextCapitalization.words,
-                        decoration: InputDecoration(hintText: 'Your destination'),
+                        decoration:
+                            const InputDecoration(hintText: 'Your destination'),
                         onChanged: (value) {
                           debugPrint(value);
                         },
@@ -135,7 +141,7 @@ class _SelectSalonState extends State<SelectSalon> {
                 Expanded(
                   flex: 2,
                   child: IconButton(
-                    icon: Icon(Icons.search),
+                    icon: const Icon(Icons.search),
                     onPressed: () async {
                       var directions = await LocationService().getDirections(
                           _originController.text, _destinationController.text);
@@ -156,7 +162,7 @@ class _SelectSalonState extends State<SelectSalon> {
             ),
             Expanded(
               child: GoogleMap(
-                markers: _markers/**{_kGooglePlexMarker, _kLakeMarker}*/,
+                markers: _markers /**{_kGooglePlexMarker, _kLakeMarker}*/,
                 mapType: MapType.normal,
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: (GoogleMapController controller) {
@@ -174,30 +180,25 @@ class _SelectSalonState extends State<SelectSalon> {
         // ),
       );
 
+  // _goToThisPlace(Map<String, dynamic> place)async{
+  //   final double lat = place['geometry']['location']['lat'];
+  //   final double lng = place['geometry']['location']['lng'];
 
-  _goToThisPlace(Map<String, dynamic> place)async{
-    final double lat = place['geometry']['location']['lat'];
-    final double lng = place['geometry']['location']['lng'];
+  //   final GoogleMapController controller = await _controller.future;
+  //   controller.animateCamera(
+  //     CameraUpdate.newCameraPosition(
+  //       CameraPosition(
+  //         target: LatLng(lat, lng),
+  //         zoom: 12,
+  //       ),
+  //     ),
+  //   );
 
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(lat, lng),
-          zoom: 12,
-        ),
-      ),
-    );
-
-    _setMarker(LatLng(lat, lng));
-  }
-
+  //   _setMarker(LatLng(lat, lng));
+  // }
 
   Future<void> _goToPlace(double lat, double lng, Map<String, dynamic> boundNe,
       Map<String, dynamic> boundSw) async {
-    // final double lat = place['geometry']['location']['lat'];
-    // final double lng = place['geometry']['location']['lng'];
-
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
@@ -207,14 +208,14 @@ class _SelectSalonState extends State<SelectSalon> {
         ),
       ),
     );
-    // controller.animateCamera(
-    //   CameraUpdate.newLatLngBounds(
-    //       LatLngBounds(
-    //         southwest: LatLng(boundSw['lat'], boundSw['lng']),
-    //         northeast: LatLng(boundNe['lat'], boundNe['lng']),
-    //       ),
-    //       25),
-    // );
+    controller.animateCamera(
+      CameraUpdate.newLatLngBounds(
+          LatLngBounds(
+            southwest: LatLng(boundSw['lat'], boundSw['lng']),
+            northeast: LatLng(boundNe['lat'], boundNe['lng']),
+          ),
+          25),
+    );
     _setMarker(LatLng(lat, lng));
   }
 
@@ -283,7 +284,6 @@ class _SelectSalonState extends State<SelectSalon> {
                         onPressed: () {
                           // Navigator.of(context)
                           //     .pushNamed(RouteManager.getDirectionsPage);
-
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
