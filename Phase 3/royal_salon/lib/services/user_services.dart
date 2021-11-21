@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_is_empty, avoid_print
-
 import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:royal_salon/models/salon_entry.dart';

@@ -226,7 +226,7 @@ class _SelectSalonState extends State<SelectSalon> {
 
   void showBottomSheet1() => showModalBottomSheet(
       enableDrag: false,
-      isDismissible: false,
+      isDismissible: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24),
@@ -309,7 +309,7 @@ class _SelectSalonState extends State<SelectSalon> {
 
   void showBottomSheet() => showModalBottomSheet(
         enableDrag: false,
-        isDismissible: false,
+        isDismissible: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(24),

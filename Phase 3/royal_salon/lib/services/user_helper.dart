@@ -83,7 +83,6 @@ void loginSalonInUI(BuildContext context,
     if (result != 'OK') {
       showSnackBar(context, result);
     } else {
-      //context.read<SalonService>().getTodos(email);
       Navigator.of(context).popAndPushNamed(RouteManager.salonPage);
     }
   }

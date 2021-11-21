@@ -15,7 +15,7 @@ class SalonEntry {
 
   Map<String, Object?> toJson() => {
         'username': username,
-        'todos': salons,
+        'salons': salons,
         'created': created,
         'updated': updated,
         'objectId': objectId,

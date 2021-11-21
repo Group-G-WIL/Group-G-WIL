@@ -9,6 +9,7 @@ import 'package:royal_salon/pages/client/bookings.dart';
 import 'package:royal_salon/pages/client/favourites.dart';
 import 'package:royal_salon/routes/edit_account.dart';
 import 'package:royal_salon/pages/client/find_salon/findsalon.dart';
+import 'package:royal_salon/routes/wallet.dart';
 import 'package:royal_salon/services/user_helper.dart';
 import 'package:royal_salon/services/user_services.dart';
 
@@ -42,9 +43,7 @@ class _ClientMainState extends State<ClientMain> {
     //
 
     //
-    Center(
-      child: Text('Wallet'),
-    ),
+    Wallet(),
     //
 
     //
@@ -61,10 +60,11 @@ class _ClientMainState extends State<ClientMain> {
     };
   }
 
- 
   @override
   Widget build(BuildContext context) {
     String email = context.read<UserService>().currentUser!.email;
+    String name = context.read<UserService>().currentUser!.getProperty('name');
+    String surname = context.read<UserService>().currentUser!.getProperty('surname');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -98,7 +98,7 @@ class _ClientMainState extends State<ClientMain> {
                       height: 10,
                     ),
                     Text(
-                      'John Rambo',
+                      '$name $surname',
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
