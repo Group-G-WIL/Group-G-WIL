@@ -27,7 +27,6 @@ class _WalletState extends State<Wallet> {
                   leading: Image.asset('assets/images/logo.jpg'),
                   title: const Text('Mastercard'),
                   onTap: () {
-                    showTextFields();
                   },
                 ),
               ),
@@ -35,8 +34,88 @@ class _WalletState extends State<Wallet> {
                 child: ListTile(
                   leading: Image.asset('assets/images/logo.jpg'),
                   title: const Text('Cash'),
-                  onTap: () {},
+                  onTap: () {
+                  },
                 ),
+              ),
+              Column(
+                children: [
+                  const Text('Name on Card:'),
+                  TextFormField(
+                    controller: _accHolderController,
+                    textCapitalization: TextCapitalization.words,
+                    decoration:
+                        const InputDecoration(hintText: 'Account holder'),
+                    onChanged: (value) {
+                      debugPrint(value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  const Text(
+                    'Account Number:',
+                  ),
+                  TextFormField(
+                    controller: _accNumberController,
+                    keyboardType: TextInputType.number,
+                    decoration:
+                        const InputDecoration(hintText: 'Account Number'),
+                    onChanged: (value) {
+                      debugPrint(value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Expiry Date: ',
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: TextFormField(
+                          controller: _expMonthController,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              const InputDecoration(hintText: 'Month'),
+                          onChanged: (value) {
+                            debugPrint(value);
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: TextFormField(
+                          controller: _expYearController,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(hintText: 'Year'),
+                          onChanged: (value) {
+                            debugPrint(value);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  const Text(
+                    'CVC:',
+                  ),
+                  TextFormField(
+                    controller: _cvcController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(hintText: '999'),
+                    onChanged: (value) {
+                      debugPrint(value);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
@@ -44,83 +123,4 @@ class _WalletState extends State<Wallet> {
       ),
     );
   }
-
-  showTextFields() {
-      return Column(
-        children: [
-          const Text('Name on Card:'),
-          TextFormField(
-            controller: _accHolderController,
-            textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(hintText: 'Account holder'),
-            onChanged: (value) {
-              debugPrint(value);
-            },
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          const Text(
-            'Account Number:',
-          ),
-          TextFormField(
-            controller: _accNumberController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(hintText: 'Account Number'),
-            onChanged: (value) {
-              debugPrint(value);
-            },
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              const Text(
-                'Expiry Date: ',
-              ),
-              Expanded(
-                flex: 1,
-                child: TextFormField(
-                  controller: _expMonthController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: 'Month'),
-                  onChanged: (value) {
-                    debugPrint(value);
-                  },
-                ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              Expanded(
-                flex: 1,
-                child: TextFormField(
-                  controller: _expYearController,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(hintText: 'Year'),
-                  onChanged: (value) {
-                    debugPrint(value);
-                  },
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10.0,
-          ),
-          const Text(
-            'CVC:',
-          ),
-          TextFormField(
-            controller: _cvcController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(hintText: '999'),
-            onChanged: (value) {
-              debugPrint(value);
-            },
-          ),
-        ],
-      );
-    }
 }

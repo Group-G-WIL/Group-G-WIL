@@ -46,8 +46,8 @@ class LocationService {
 
     debugPrint(json.toString());
     var results = {
-      'bounds_ne': json['routes'][0]['northeast'],
-      'bound_sw': json['routes'][0]['southwest'],
+      'bounds_ne': json['routes'][0]['bounds']['northeast'],
+      'bounds_sw': json['routes'][0]['bounds']['southwest'],
       'start_location': json['routes'][0]['legs'][0]['start_location'],
       'end_location': json['routes'][0]['legs'][0]['end_location'],
       'polyline': json['routes'][0]['overview_polyline']['points'],
