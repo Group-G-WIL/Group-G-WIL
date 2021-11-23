@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/services/user_services.dart';
 import 'package:royal_salon/services/user_helper.dart';
-import 'package:royal_salon/widgets/app_textfield.dart';
+
 import 'package:royal_salon/widgets/card_template.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/widgets/custom_alertdialog.dart';
@@ -159,7 +159,9 @@ class _EditAccountState extends State<EditAccount> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pop(
+                              context,
+                            );
                           },
                           child: const Text('CANCEL'),
                         ),

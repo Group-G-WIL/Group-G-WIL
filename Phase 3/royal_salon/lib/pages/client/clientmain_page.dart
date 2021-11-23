@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/src/provider.dart';
 import 'package:royal_salon/default/default.dart';
+<<<<<<< HEAD
 import 'package:royal_salon/routes/edit_account.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/services/user_helper.dart';
@@ -12,6 +13,15 @@ import 'package:royal_salon/services/user_services.dart';
 
 import 'FindSalon/Book.dart';
 import 'FindSalon/findsalon.dart';
+=======
+import 'package:royal_salon/pages/client/bookings.dart';
+import 'package:royal_salon/pages/client/favourites.dart';
+import 'package:royal_salon/routes/edit_account.dart';
+import 'package:royal_salon/pages/client/find_salon/findsalon.dart';
+import 'package:royal_salon/routes/wallet.dart';
+import 'package:royal_salon/services/user_helper.dart';
+import 'package:royal_salon/services/user_services.dart';
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
 
 var indexClicked = 0;
 
@@ -23,8 +33,13 @@ class ClientMain extends StatefulWidget {
 }
 
 class _ClientMainState extends State<ClientMain> {
+<<<<<<< HEAD
   late String email;
   final pages = [
+=======
+  final pages = const [
+    //
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
     FindSalon(), //please just call your state here like this dont change any thing on the body
     //
 
@@ -34,6 +49,7 @@ class _ClientMainState extends State<ClientMain> {
     ),
 
     //
+<<<<<<< HEAD
     BookNow(), //you can remove this and only call your state
 
     Center(
@@ -43,6 +59,18 @@ class _ClientMainState extends State<ClientMain> {
     Center(
       child: Text('Wallet'),
     ),
+=======
+    Booking(),
+    //
+
+    //
+    Favourites(),
+    //
+
+    //
+    Wallet(),
+    //
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
 
     //
     EditAccount(),
@@ -60,9 +88,15 @@ class _ClientMainState extends State<ClientMain> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     email = context.read<UserService>().currentUser!.email;
     debugPrint(email);
 
+=======
+    String email = context.read<UserService>().currentUser!.email;
+    String name = context.read<UserService>().currentUser!.getProperty('name');
+    String surname = context.read<UserService>().currentUser!.getProperty('surname');
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -83,6 +117,7 @@ class _ClientMainState extends State<ClientMain> {
               ),
               padding: const EdgeInsets.all(0),
               child: Container(
+<<<<<<< HEAD
                 child: Column(children: [
                   Column(
                     children: [
@@ -93,6 +128,37 @@ class _ClientMainState extends State<ClientMain> {
                         radius: 42,
                         backgroundImage:
                             AssetImage('assets/images/profile.jpg'),
+=======
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CircleAvatar(
+                      radius: 42,
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '$name $surname',
+                      style: GoogleFonts.sanchez(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      email,
+                      style: GoogleFonts.sanchez(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
                       ),
                       const SizedBox(
                         height: 10,

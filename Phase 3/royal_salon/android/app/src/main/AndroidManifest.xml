@@ -1,12 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.royal_salon">
    <uses-permission android:name="android.permission.INTERNET"/>
+   
    <application
         android:label="royal_salon"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
+<<<<<<< HEAD
             android:value="AIzaSyDyzwCQclXRLvR04urPr7S4j2HTLbf_Rj4"/>
     
+=======
+               android:value="AIzaSyC0UoA_8zQLB2r7Z1OKupFq9orI5FCJmvI"/>
+        
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -17,9 +17,9 @@ class InitApp {
 
     String result = await context.read<UserService>().checkIfUserLoggedIn();
     if (result == 'OK') {
-      Navigator.popAndPushNamed(context, RouteManager.clientPage);
+      Navigator.pushReplacementNamed(context, RouteManager.clientPage);
     } else {
-      Navigator.popAndPushNamed(context, RouteManager.loginPage);
+      Navigator.pushReplacementNamed(context, RouteManager.loginPage);
     }
   }
 }

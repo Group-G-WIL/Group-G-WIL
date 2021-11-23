@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/widgets/dialogs.dart';

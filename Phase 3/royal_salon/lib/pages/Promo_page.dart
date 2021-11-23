@@ -186,6 +186,60 @@ class _PromotionsState extends State<Promotions>
                         ),
                         Column(),
                       ],
+<<<<<<< HEAD
+=======
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  children: const [
+                    Icon(
+                      Icons.person,
+                      size: 50,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                                titleTextStyle: const TextStyle(
+                                  fontSize: 20.0,
+                                ),
+                                content: const Text(
+                                    'Are you sure you want to Delete This file?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      showSnackBar(context, 'Cancelled!');
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text(' NO '),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      showSnackBar(context, 'Deleted!');
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text(' Yes '),
+                                  ),
+                                ]);
+                          },
+                        );
+                      },
+                      child: const Text('Delete'),
+>>>>>>> 3c27f27b47b062f092991bd418d5d940de9e1f75
                     ),
                   ),
                   /*    ListTile(
