@@ -3,11 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/src/provider.dart';
 import 'package:royal_salon/default/default.dart';
-import 'package:royal_salon/pages/client/FindSalon/findsalon.dart';
 import 'package:royal_salon/routes/edit_account.dart';
-import 'package:royal_salon/services/user_helper.dart';
 import 'package:royal_salon/routes/routes.dart';
+import 'package:royal_salon/services/user_helper.dart';
+import 'package:royal_salon/services/user_services.dart';
+
+import 'FindSalon/Book.dart';
+import 'FindSalon/findsalon.dart';
 
 var indexClicked = 0;
 
@@ -19,8 +23,8 @@ class ClientMain extends StatefulWidget {
 }
 
 class _ClientMainState extends State<ClientMain> {
-  final pages = const [
-    //
+  late String email;
+  final pages = [
     FindSalon(), //please just call your state here like this dont change any thing on the body
     //
 
@@ -28,25 +32,17 @@ class _ClientMainState extends State<ClientMain> {
     Center(
       child: Text('Inbox'), //you can remove this and only call your state
     ),
-    //
 
     //
-    Center(
-      child: Text('Bookings'), //you can remove this and only call your state
-    ),
-    //
+    BookNow(), //you can remove this and only call your state
 
-    //
     Center(
       child: Text('Favourites'),
     ),
-    //
 
-    //
     Center(
       child: Text('Wallet'),
     ),
-    //
 
     //
     EditAccount(),
@@ -64,6 +60,9 @@ class _ClientMainState extends State<ClientMain> {
 
   @override
   Widget build(BuildContext context) {
+    email = context.read<UserService>().currentUser!.email;
+    debugPrint(email);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -84,113 +83,42 @@ class _ClientMainState extends State<ClientMain> {
               ),
               padding: const EdgeInsets.all(0),
               child: Container(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 5,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const CircleAvatar(
-                            radius: 42,
-                            backgroundImage:
-                                AssetImage('assets/images/profile.jpg'),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'John Rambo',
-                            style: GoogleFonts.sanchez(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'john@rambo.com',
-                            style: GoogleFonts.sanchez(
-                              fontSize: 10,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                child: Column(children: [
+                  Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        children: [
-                          AppDrawerTile(
-                            index: 0,
-                            onTap: updateState(0),
-                          ),
-                          AppDrawerTile(
-                            index: 1,
-                            onTap: updateState(1),
-                          ),
-                          AppDrawerTile(
-                            index: 2,
-                            onTap: updateState(2),
-                          ),
-                          AppDrawerTile(
-                            index: 3,
-                            onTap: updateState(3),
-                          ),
-                          AppDrawerTile(
-                            index: 4,
-                            onTap: updateState(4),
-                          ),
-                          AppDrawerTile(
-                            index: 5,
-                            onTap: () {
-                              updateState(5);
-                              Navigator.pushNamed(
-                                  context, RouteManager.editAccountPage,
-                                  arguments: Null);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const AppDrawerDivider(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              logoutUserInUI(context);
-                            },
-                            child: Center(
-                              child: Text(
-                                'Log out',
-                                style: GoogleFonts.sanchez(
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 20,
-                                  color: Defaults.drawerItemSelectedColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const AppDrawerDivider(),
-                        ],
+                      const CircleAvatar(
+                        radius: 42,
+                        backgroundImage:
+                            AssetImage('assets/images/profile.jpg'),
                       ),
-                    ),
-                  ],
-                ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'John Rambo',
+                        style: GoogleFonts.sanchez(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        email,
+                        style: GoogleFonts.sanchez(
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
             ),
             Expanded(
@@ -207,7 +135,11 @@ class _ClientMainState extends State<ClientMain> {
                   ),
                   AppDrawerTile(
                     index: 2,
-                    onTap: updateState(2),
+                    onTap: () {
+                      updateState(2);
+                      Navigator.pushNamed(context, RouteManager.bookPage,
+                          arguments: Null);
+                    },
                   ),
                   AppDrawerTile(
                     index: 3,
@@ -219,12 +151,16 @@ class _ClientMainState extends State<ClientMain> {
                   ),
                   AppDrawerTile(
                     index: 5,
-                    onTap: updateState(5),
+                    onTap: () {
+                      updateState(5);
+                      Navigator.pushNamed(context, RouteManager.editAccountPage,
+                          arguments: Null);
+                    },
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  AppDrawerDivider(),
+                  const AppDrawerDivider(),
                   const SizedBox(
                     height: 10,
                   ),

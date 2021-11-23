@@ -1,7 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        ChangeNotifier,
+        Key,
+        MaterialApp,
+        StatelessWidget,
+        Widget,
+        runApp;
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/services/user_services.dart';
+import 'services/geo_locator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +27,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => UserService(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ApplBlock(),
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -24,5 +37,20 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: RouteManager.generateRoute,
       ),
     );
+  }
+}
+
+class ApplBlock with ChangeNotifier {
+  final geoLocatorService = GeoLocatorService();
+
+  late Position currentLocation;
+
+  ApplBlock() {
+    setCurrentLocation();
+  }
+
+  setCurrentLocation() async {
+    currentLocation = await geoLocatorService.getCurrentLocation();
+    notifyListeners();
   }
 }

@@ -2,11 +2,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/src/provider.dart';
 import 'package:royal_salon/default/default.dart';
 import 'package:royal_salon/pages/Promo_page.dart';
 import 'package:royal_salon/routes/edit_account.dart';
 import 'package:royal_salon/routes/routes.dart';
 import 'package:royal_salon/services/user_helper.dart';
+import 'package:royal_salon/services/user_services.dart';
 
 var indexClicked = 0;
 
@@ -18,6 +20,8 @@ class SalonPage extends StatefulWidget {
 }
 
 class _SalonPageState extends State<SalonPage> {
+  late String email;
+
   final pages = [
     Center(
       child: Text('Home'), //you can remove this and only call your state
@@ -28,7 +32,8 @@ class _SalonPageState extends State<SalonPage> {
     Center(
       child: Text('Reviews'),
     ),
-    Promotions(), //please just call your state here like this dont change any thing on the body
+    Promotions(
+        GlobalKey), //please just call your state here like this dont change any thing on the body
     Center(
       child: Text('Schedule'),
     ),
@@ -49,6 +54,9 @@ class _SalonPageState extends State<SalonPage> {
 
   @override
   Widget build(BuildContext context) {
+    email = context.read<UserService>().currentUser!.email;
+    debugPrint(email);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -93,7 +101,7 @@ class _SalonPageState extends State<SalonPage> {
                       height: 5,
                     ),
                     Text(
-                      'john@rambo.com',
+                      email,
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,

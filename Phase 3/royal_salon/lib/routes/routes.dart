@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:royal_salon/pages/Promo_page.dart';
 import 'package:royal_salon/pages/client/FindSalon/book.dart';
+import 'package:royal_salon/pages/client/FindSalon/map.dart';
 import 'package:royal_salon/pages/client/FindSalon/receipt.dart';
 import 'package:royal_salon/pages/client/FindSalon/reviews_salon.dart';
 import 'package:royal_salon/pages/client/FindSalon/services.dart';
-import 'package:royal_salon/pages/Promo_Addition.dart';
 import 'package:royal_salon/pages/client/clientmain_page.dart';
 import 'package:royal_salon/WelcomPage/loading.dart';
 import 'package:royal_salon/WelcomPage/login.dart';
@@ -31,6 +31,7 @@ class RouteManager {
   static const String editAccountPage = '/editAccountPage';
   static const String promotionsPage = '/promotions';
   static const String addPromo = '/PromoAdd';
+  static const String mapPage = '/mapPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -38,7 +39,10 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => Login(),
         );
-
+      case mapPage:
+        return MaterialPageRoute(
+          builder: (context) => MapPage(),
+        );
       case registerPage:
         return MaterialPageRoute(
           builder: (context) => Register(),
@@ -86,11 +90,7 @@ class RouteManager {
         );
 
       case promotionsPage:
-        return MaterialPageRoute(builder: (context) => Promotions());
-      case addPromo:
-        return MaterialPageRoute(
-          builder: (context) => PromoAdd(),
-        );
+        return MaterialPageRoute(builder: (context) => Promotions(GlobalKey));
 
       case editAccountPage:
         return MaterialPageRoute(

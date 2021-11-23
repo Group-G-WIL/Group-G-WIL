@@ -215,7 +215,7 @@ class _EditAccountState extends State<EditAccount> {
                 showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialog(
+                      return const AlertDialog(
                         content: Text('No policy yet'),
                       );
                     });

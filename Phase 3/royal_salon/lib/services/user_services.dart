@@ -200,7 +200,7 @@ class UserService with ChangeNotifier {
 
     debugPrint('Current name: ${user.getProperty('name')}');
     // BackendlessUser user = new BackendlessUser();
-    
+
     // user.setProperty("age", 32);
     // Backendless.userService.update(user).then((user) {
     //   debugPrint("User has been updated");

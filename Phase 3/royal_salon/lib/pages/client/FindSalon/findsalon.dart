@@ -15,14 +15,16 @@ class FindSalon extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(RouteManager.findsalonPage);
+            Navigator.of(context).pushNamed(RouteManager.mapPage);
           },
           style: ElevatedButton.styleFrom(
             primary: Colors.purple,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text('Find a salon'),
+              SizedBox(width: 15),
               Icon(Icons.search_off_outlined)
             ],
           ),

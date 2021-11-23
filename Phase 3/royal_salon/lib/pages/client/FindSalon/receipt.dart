@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:royal_salon/pages/client/FindSalon/Book.dart';
 
 class Reciept extends StatelessWidget {
   const Reciept({Key? key}) : super(key: key);
@@ -19,11 +20,11 @@ class Reciept extends StatelessWidget {
           color: Colors.black54,
           child: Column(
             children: [
-              Text('Thank you for Booking:'),
-              Text('Booking number:'),
-              Text('Date:'),
-              Text('HairStyle:'),
-              Text('Total Price:'),
+              Text('Thank you for Booking :'),
+              Text('Booking number  :'),
+              Text('Date  : '),
+              Text('HairStyle :'),
+              Text('Total Price :'),
               ElevatedButton(
                 onPressed: () {
                   // Navigator.of(context)
