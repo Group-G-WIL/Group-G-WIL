@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,11 +17,16 @@ var indexClicked = 0;
 class ClientMain extends StatefulWidget {
   const ClientMain({Key? key}) : super(key: key);
 
+  // File? value;
+  // ClientMain({Key? key, @required this.value}) : super(key: key);
+
   @override
   _ClientMainState createState() => _ClientMainState();
 }
 
 class _ClientMainState extends State<ClientMain> {
+  // File? value;
+  _ClientMainState();
   final pages = [
     FindSalon(),
     Center(

@@ -2,6 +2,7 @@ import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfinal_app/default/default.dart';
+import 'package:myfinal_app/pages/salon/salon_menu/edit_account_salon.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/home.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/inbox_salon.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/promotions.dart';
@@ -32,9 +33,7 @@ class _SalonMainState extends State<SalonMain> {
     Promotions(),
     Schedule(),
     WalletSalon(),
-    Center(
-      child: Text('OK'),
-    ),
+    EditAccountSalon()
   ];
 
   VoidCallback updateState(int index) {

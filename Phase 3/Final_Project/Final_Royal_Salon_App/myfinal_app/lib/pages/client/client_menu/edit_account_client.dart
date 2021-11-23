@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:myfinal_app/services/helper_user.dart';
 import 'package:myfinal_app/services/user_service.dart';
 import 'package:myfinal_app/widgets/card_template.dart';
@@ -44,6 +49,21 @@ class _EditAccountState extends State<EditAccount> {
     super.dispose();
   }
 
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+
+      setState(() => this.image = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     email = context.read<UserService>().currentUser!.email;
@@ -51,168 +71,203 @@ class _EditAccountState extends State<EditAccount> {
     debugPrint(email);
 
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20.0,
-          ),
-          const Text(
-            'Settings',
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.normal,
-              color: Colors.blueGrey,
+      backgroundColor: Colors.cyan[50],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20.0,
             ),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            email,
-            style: const TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.normal,
+            const Text(
+              'Settings',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.normal,
+                color: Colors.blueGrey,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          CardTemplate(
-              title: 'Security',
-              subtitle: 'Change Password, Banking Details',
+            const SizedBox(
+              height: 20.0,
+            ),
+            image != null
+                ? Image.file(
+                    image!,
+                    width: 160,
+                    height: 160,
+                    fit: BoxFit.cover,
+                  )
+                : Icon(
+                    Icons.image,
+                    size: 100,
+                  ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                email,
+                style: const TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                onPressed: () {
+                  // ClientMain(value: image);
+                  pickImage();
+                },
+                child: Row(
+                  children: [
+                    Icon(Icons.image_outlined),
+                    Text('Change Profile'),
+                  ],
+                ),
+              ),
+            ),
+            CardTemplate(
+                title: 'Security',
+                subtitle: 'Change Password, Banking Details',
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SingleChildScrollView(
+                          child: CustomAlertdialog(
+                            firstController: passwordController,
+                            firstHeaderText: 'Password: ',
+                            secondController: confirmController,
+                            secondHeaderText: 'Confirm: ',
+                            thirdController: phonenumberController,
+                            thirdHeaderText: '',
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  updateUserDatainUI(
+                                      context,
+                                      usernameController.text,
+                                      passwordController.text,
+                                      confirmController.text,
+                                      nameController.text,
+                                      surnameController.text,
+                                      phonenumberController.text);
+
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('DONE'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('CANCEL'),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                }),
+            CardTemplate(
+              title: 'Account Settings',
+              subtitle: 'Name, Surname, Phone number',
               onPressed: () {
                 showDialog(
                     context: context,
                     builder: (context) {
-                      return CustomAlertdialog(
-                        firstController: passwordController,
-                        firstHeaderText: 'Password: ',
-                        secondController: confirmController,
-                        secondHeaderText: 'Confirm: ',
-                        thirdController: phonenumberController,
-                        thirdHeaderText: '',
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              updateUserDatainUI(
+                      return SingleChildScrollView(
+                        child: CustomAlertdialog(
+                          firstController: nameController,
+                          firstHeaderText: 'Name:',
+                          secondController: surnameController,
+                          secondHeaderText: 'Surname:',
+                          thirdController: phonenumberController,
+                          thirdHeaderText: 'Phone number:',
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                updateUserDatainUI(
+                                    context,
+                                    usernameController.text,
+                                    passwordController.text,
+                                    confirmController.text,
+                                    nameController.text,
+                                    surnameController.text,
+                                    phonenumberController.text);
+
+                                Navigator.pop(context);
+                              },
+                              child: const Text('DONE'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(
                                   context,
-                                  usernameController.text,
-                                  passwordController.text,
-                                  confirmController.text,
-                                  nameController.text,
-                                  surnameController.text,
-                                  phonenumberController.text);
-
-                              Navigator.pop(context);
-                            },
-                            child: const Text('DONE'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('CANCEL'),
-                          ),
-                        ],
-                      );
-                    });
-              }),
-          CardTemplate(
-            title: 'Account Settings',
-            subtitle: 'Name, Surname, Phone number',
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return CustomAlertdialog(
-                      firstController: nameController,
-                      firstHeaderText: 'Name:',
-                      secondController: surnameController,
-                      secondHeaderText: 'Surname:',
-                      thirdController: phonenumberController,
-                      thirdHeaderText: 'Phone number:',
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            updateUserDatainUI(
-                                context,
-                                usernameController.text,
-                                passwordController.text,
-                                confirmController.text,
-                                nameController.text,
-                                surnameController.text,
-                                phonenumberController.text);
-
-                            Navigator.pop(context);
-                          },
-                          child: const Text('DONE'),
+                                );
+                              },
+                              child: const Text('CANCEL'),
+                            ),
+                          ],
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(
-                              context,
-                            );
-                          },
-                          child: const Text('CANCEL'),
-                        ),
-                      ],
-                    );
-                  });
-            },
-          ),
-          CardTemplate(
-              title: 'Location',
-              subtitle: 'Change location',
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return CustomAlertdialog(
-                        firstController: passwordController,
-                        firstHeaderText: 'Street:',
-                        secondController: confirmController,
-                        secondHeaderText: 'Surburb:',
-                        thirdController: phonenumberController,
-                        thirdHeaderText: 'City',
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              updateUserDatainUI(
-                                  context,
-                                  usernameController.text,
-                                  passwordController.text,
-                                  confirmController.text,
-                                  nameController.text,
-                                  surnameController.text,
-                                  phonenumberController.text);
+                      );
+                    });
+              },
+            ),
+            CardTemplate(
+                title: 'Location',
+                subtitle: 'Change location',
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SingleChildScrollView(
+                          child: CustomAlertdialog(
+                            firstController: passwordController,
+                            firstHeaderText: 'Street:',
+                            secondController: confirmController,
+                            secondHeaderText: 'Surburb:',
+                            thirdController: phonenumberController,
+                            thirdHeaderText: 'City',
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  updateUserDatainUI(
+                                      context,
+                                      usernameController.text,
+                                      passwordController.text,
+                                      confirmController.text,
+                                      nameController.text,
+                                      surnameController.text,
+                                      phonenumberController.text);
 
-                              Navigator.pop(context);
-                            },
-                            child: const Text('DONE'),
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('DONE'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('CANCEL'),
+                              ),
+                            ],
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text('CANCEL'),
-                          ),
-                        ],
-                      );
-                    });
-              }),
-          CardTemplate(
-              title: 'Policy',
-              subtitle: 'Terms and Conditions, License',
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const AlertDialog(
-                        content: Text('No policy yet'),
-                      );
-                    });
-              }),
-        ],
+                        );
+                      });
+                }),
+            CardTemplate(
+                title: 'Policy',
+                subtitle: 'Terms and Conditions, License',
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AlertDialog(
+                          content: Text('No policy yet'),
+                        );
+                      });
+                }),
+          ],
+        ),
       ),
     );
   }
