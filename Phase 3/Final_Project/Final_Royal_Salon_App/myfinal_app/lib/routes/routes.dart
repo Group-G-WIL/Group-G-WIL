@@ -5,6 +5,7 @@ import 'package:myfinal_app/pages/client/client_main_page.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/get_directions.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/reviews.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/services.dart';
+import 'package:myfinal_app/pages/client/client_menu/inbox_client.dart';
 import 'package:myfinal_app/pages/salon/salon_main_page.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/inbox_salon.dart';
 
@@ -27,7 +28,7 @@ class RouteManager {
   static const String getDirectionsPage = '/getDirectionsPage';
   static const String addPromo = '/addPromo';
   static const String noBooking = '/noBooking';
-
+  static const String inboxPage = '/inboxPage';
   static const String loadingPage = '/loadingPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -70,7 +71,7 @@ class RouteManager {
 
       case reviewsPage:
         return MaterialPageRoute(
-          builder: (context) => const SalonReviews(),
+          builder: (context) => SalonReviews(),
         );
 
       case getDirectionsPage:
@@ -84,6 +85,10 @@ class RouteManager {
       case noBooking:
         return MaterialPageRoute(
           builder: (context) => NoBookings(),
+        );
+      case inboxPage:
+        return MaterialPageRoute(
+          builder: (context) => AddSalonReviews(),
         );
       default:
         throw const FormatException('Route not found! Check routes again!');
