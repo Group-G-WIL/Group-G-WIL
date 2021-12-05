@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfinal_app/models/todo.dart';
+import 'package:myfinal_app/routes/routes.dart';
 
 class DisplayServices extends StatelessWidget {
   const DisplayServices({
@@ -53,7 +54,9 @@ class DisplayServices extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteManager.bookPage);
+            },
             child: Text('Book'),
           ),
         ],

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:myfinal_app/pages/client/booking_process/booking_selection.dart';
+import 'package:myfinal_app/pages/client/booking_process/receipt.dart';
 import 'package:myfinal_app/pages/client/client_main_page.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/get_directions.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/reviews.dart';
@@ -32,6 +34,8 @@ class RouteManager {
   static const String inboxPage = '/inboxPage';
   static const String loadingPage = '/loadingPage';
   static const String resetPage = '/resetPage';
+  static const String recieptPage = '/recieptPage';
+  static const String bookPage = '/bookPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -47,6 +51,10 @@ class RouteManager {
       case registerPage:
         return MaterialPageRoute(
           builder: (context) => const Register(),
+        );
+      case bookPage:
+        return MaterialPageRoute(
+          builder: (context) => const BookNow(),
         );
       case registerSalonPage:
         return MaterialPageRoute(
@@ -84,6 +92,11 @@ class RouteManager {
       case resetPage:
         return MaterialPageRoute(
           builder: (context) => const Reset(),
+        );
+
+      case recieptPage:
+        return MaterialPageRoute(
+          builder: (context) => const Reciept(),
         );
       // case addPromo:
       //   return MaterialPageRoute(

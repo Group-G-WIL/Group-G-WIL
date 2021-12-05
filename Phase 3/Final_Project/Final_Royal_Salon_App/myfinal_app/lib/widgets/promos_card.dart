@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfinal_app/models/promo.dart';
 import 'package:myfinal_app/models/todo.dart';
+import 'package:myfinal_app/routes/routes.dart';
 
 class DisplayPromo extends StatelessWidget {
   const DisplayPromo({
@@ -61,7 +62,9 @@ class DisplayPromo extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(RouteManager.bookPage);
+            },
             child: Text('Book'),
           ),
         ],
