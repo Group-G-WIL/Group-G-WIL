@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.cyan, Colors.purple],
           ),
         ),
         child: Stack(
@@ -86,16 +86,33 @@ class _LoginState extends State<Login> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          loginUserInUI(context,
-                              email: usernameController.text,
-                              password: passwordController.text);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.purple,
-                        ),
-                        child: const Text('Login'),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 28.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                loginUserInUI(context,
+                                    email: usernameController.text,
+                                    password: passwordController.text);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.purple,
+                              ),
+                              child: const Text('Login'),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(RouteManager.resetPage);
+                              },
+                              child: Text('Forgot Password'),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     TextButton(
@@ -106,17 +123,7 @@ class _LoginState extends State<Login> {
                         Navigator.of(context)
                             .pushNamed(RouteManager.registerPage);
                       },
-                      child: const Text('Register Now'),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
-                      ),
-                      onPressed: () async {
-                        resetPasswordInUI(context,
-                            email: usernameController.text);
-                      },
-                      child: const Text('Reset Password'),
+                      child: const Text('Register as client'),
                     ),
                     const SizedBox(
                       height: 20,

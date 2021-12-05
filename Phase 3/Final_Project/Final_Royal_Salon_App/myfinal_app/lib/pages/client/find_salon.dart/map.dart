@@ -136,26 +136,29 @@ class FindSalonState extends State<FindSalon> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    provider.Selector<UserService, BackendlessUser?>(
-                      selector: (context, value) => value.currentUser,
-                      builder: (context, value, child) {
-                        return value == null
-                            ? Text('Salon name: xxx')
-                            : Text(
-                                'Salon name: ${value.getProperty('salon_name') == null ? 'xxx' : value.getProperty('salon_name')}',
-                                style: GoogleFonts.sanchez(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              );
-                      },
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: provider.Selector<UserService, BackendlessUser?>(
+                        selector: (context, value) => value.currentUser,
+                        builder: (context, value, child) {
+                          return value == null
+                              ? Text('Salon name: xxx')
+                              : Text(
+                                  'Salon name: ${value.getProperty('salon_name') == null ? 'xxx' : value.getProperty('salon_name')}',
+                                  style: GoogleFonts.sanchez(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                );
+                        },
+                      ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 250),
+                      padding: const EdgeInsets.only(left: 5),
                       child: provider.Selector<UserService, BackendlessUser?>(
                         selector: (context, value) => value.currentUser,
                         builder: (context, value, child) {

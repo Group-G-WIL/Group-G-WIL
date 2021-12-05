@@ -13,6 +13,7 @@ import 'package:myfinal_app/pages/welcome_page/loading.dart';
 import 'package:myfinal_app/pages/welcome_page/login.dart';
 import 'package:myfinal_app/pages/welcome_page/register.dart';
 import 'package:myfinal_app/pages/welcome_page/registersalon.dart';
+import 'package:myfinal_app/pages/welcome_page/reset_password.dart';
 import 'package:myfinal_app/pages/welcome_page/salonlogin.dart';
 import 'package:myfinal_app/services/Promo_Addition.dart';
 
@@ -30,6 +31,7 @@ class RouteManager {
   static const String noBooking = '/noBooking';
   static const String inboxPage = '/inboxPage';
   static const String loadingPage = '/loadingPage';
+  static const String resetPage = '/resetPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -78,10 +80,15 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => GetDirections(),
         );
-      case addPromo:
+
+      case resetPage:
         return MaterialPageRoute(
-          builder: (context) => PromoAdd(),
+          builder: (context) => const Reset(),
         );
+      // case addPromo:
+      //   return MaterialPageRoute(
+      //     builder: (context) => PromoAdd(),
+      //   );
       case noBooking:
         return MaterialPageRoute(
           builder: (context) => NoBookings(),

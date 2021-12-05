@@ -44,7 +44,7 @@ class _SalonLoginState extends State<SalonLogin> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.blue, Colors.pink],
           ),
         ),
         child: Stack(
@@ -117,15 +117,15 @@ class _SalonLoginState extends State<SalonLogin> {
                       },
                       child: const Text('Register Now'),
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(RouteManager.resetPage);
+                        },
+                        child: Text('Forgot Password'),
                       ),
-                      onPressed: () async {
-                        resetPasswordInUI(context,
-                            email: usernameController.text);
-                      },
-                      child: const Text('Reset Password'),
                     ),
                     const SizedBox(
                       height: 20,

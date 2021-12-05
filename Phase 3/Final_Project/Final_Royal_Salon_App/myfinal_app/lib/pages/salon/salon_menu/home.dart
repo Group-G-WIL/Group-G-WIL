@@ -56,16 +56,16 @@ class _SalonHomeState extends State<SalonHome> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        IconButton(
-                          icon: Icon(
-                            Icons.refresh,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                          onPressed: () {
-                            refreshTodosInUI(context);
-                          },
-                        ),
+                        // IconButton(
+                        //   icon: Icon(
+                        //     Icons.refresh,
+                        //     color: Colors.white,
+                        //     size: 30,
+                        //   ),
+                        //   onPressed: () {
+                        //     refreshTodosInUI(context);
+                        //   },
+                        // ),
                         IconButton(
                           icon: Icon(
                             Icons.save,
