@@ -197,6 +197,14 @@ class UserService with ChangeNotifier {
     debugPrint(result1);
     return result1;
   }
+
+  static bool validatePassword(String value) {
+    String pattern =
+        '^(?=.{8,32}\$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[%^()_,.?:{}|<>!@#\$&*~]).*';
+    RegExp regExp = RegExp(pattern);
+
+    return regExp.hasMatch(value);
+  }
 }
 
 String getHumanReadableError(String message) {

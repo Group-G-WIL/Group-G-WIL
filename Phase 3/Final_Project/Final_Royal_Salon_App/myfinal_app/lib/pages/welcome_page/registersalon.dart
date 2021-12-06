@@ -4,6 +4,7 @@ import 'package:myfinal_app/services/helper_user.dart';
 import 'package:myfinal_app/services/user_service.dart';
 import 'package:myfinal_app/widgets/app_progress_indicator.dart';
 import 'package:myfinal_app/widgets/app_textfield.dart';
+import 'package:myfinal_app/widgets/dialogs.dart';
 import 'package:provider/provider.dart';
 
 import 'package:tuple/tuple.dart';
@@ -24,6 +25,8 @@ class _RegisterSalonState extends State<RegisterSalon> {
   late TextEditingController passwordController;
   late TextEditingController confirmController;
   late TextEditingController salonLocationController;
+  late String invalidPassword;
+  late bool valid;
 
   @override
   void initState() {
@@ -36,6 +39,8 @@ class _RegisterSalonState extends State<RegisterSalon> {
     phonenumberController = TextEditingController();
     salonnameController = TextEditingController();
     salonLocationController = TextEditingController();
+    invalidPassword = '';
+    valid = false;
   }
 
   @override
@@ -137,6 +142,24 @@ class _RegisterSalonState extends State<RegisterSalon> {
                       keyboardType: TextInputType.text,
                       controller: passwordController,
                       labelText: 'Please enter your password',
+                      onChanged: (strength) {
+                        if (!UserService.validatePassword(strength)) {
+                          setState(() {
+                            invalidPassword = 'Enter a valid password';
+                          });
+                        } else {
+                          setState(() {
+                            invalidPassword = '';
+                            valid = true;
+                          });
+                        }
+                      },
+                    ),
+                    Text(
+                      invalidPassword,
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
                     ),
                     AppTextField(
                       hideText: true,
@@ -149,16 +172,21 @@ class _RegisterSalonState extends State<RegisterSalon> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.purple),
                         onPressed: () {
-                          createNewUserSalonInUI(context,
-                              email: usernameController.text.trim(),
-                              password: passwordController.text.trim(),
-                              salon_name: salonnameController.text.trim(),
-                              name: nameController.text.trim(),
-                              salonLocation:
-                                  salonLocationController.text.trim(),
-                              surname: surnameController.text.trim(),
-                              cellphone: phonenumberController.text.trim(),
-                              confirm: confirmController.text.trim());
+                          if (valid) {
+                            createNewUserSalonInUI(context,
+                                email: usernameController.text.trim(),
+                                password: passwordController.text.trim(),
+                                salon_name: salonnameController.text.trim(),
+                                name: nameController.text.trim(),
+                                salonLocation:
+                                    salonLocationController.text.trim(),
+                                surname: surnameController.text.trim(),
+                                cellphone: phonenumberController.text.trim(),
+                                confirm: confirmController.text.trim());
+                          } else {
+                            showSnackBar(
+                                context, 'All fields must be valid');
+                          }
                         },
                         child: const Text('Register'),
                       ),

@@ -14,6 +14,8 @@ class AppTextField extends StatelessWidget {
       this.textFieldHeaderColor = Colors.white,
       required this.keyboardType,
       this.hideText = false,
+      this.onChanged,
+      this.validator,
       this.textFieldColor = Colors.white,
       this.focusedBorderColor = Colors.white,
       this.enabledBorderColor = Colors.grey,
@@ -33,6 +35,8 @@ class AppTextField extends StatelessWidget {
   final Color focusedBorderColor;
   final Color enabledBorderColor;
   final Color? labelStyleColor;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,9 @@ class AppTextField extends StatelessWidget {
           const SizedBox(width: 5.0),
           Expanded(
             flex: textFieldFlex,
-            child: TextField(
+            child: TextFormField(
+              validator: validator,
+              onChanged: onChanged,
               obscureText: hideText,
               style: TextStyle(color: textFieldColor),
               cursorColor: Colors.white,
