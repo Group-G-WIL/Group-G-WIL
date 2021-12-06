@@ -52,10 +52,7 @@ class RouteManager {
         return MaterialPageRoute(
           builder: (context) => const Register(),
         );
-      case bookPage:
-        return MaterialPageRoute(
-          builder: (context) => const BookNow(),
-        );
+
       case registerSalonPage:
         return MaterialPageRoute(
           builder: (context) => const RegisterSalon(),
@@ -94,14 +91,6 @@ class RouteManager {
           builder: (context) => const Reset(),
         );
 
-      case recieptPage:
-        return MaterialPageRoute(
-          builder: (context) => const Reciept(),
-        );
-      // case addPromo:
-      //   return MaterialPageRoute(
-      //     builder: (context) => PromoAdd(),
-      //   );
       case noBooking:
         return MaterialPageRoute(
           builder: (context) => NoBookings(),

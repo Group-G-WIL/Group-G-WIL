@@ -5,8 +5,20 @@ import 'package:myfinal_app/services/todo_service.dart';
 import 'package:provider/provider.dart' as provider;
 
 class Reciept extends StatelessWidget {
-  const Reciept({Key? key}) : super(key: key);
+  const Reciept({
+    Key? key,
+    required this.title,
+    required this.title1,
+    required this.date,
+    required this.time,
+    required this.booknumber,
+  }) : super(key: key);
 
+  final String title;
+  final String title1;
+  final String date;
+  final String time;
+  final int booknumber;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +27,7 @@ class Reciept extends StatelessWidget {
       ),
       body: Card(
         child: Container(
-          width: 360,
-          height: 150,
+          height: 200,
           color: Colors.cyan[100],
           child: Column(
             children: [
@@ -24,15 +35,48 @@ class Reciept extends StatelessWidget {
                 height: 10,
               ),
               Text('Thank you for Booking :'),
-              Text('Booking number  :'),
-              Text('Date  : '),
-              Text('HairStyle :'),
-              Text('Total Price :'),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text('Booking number  : ' + booknumber.toString()),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text('Date  : ' + date),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text('Time  : ' + time),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text('HairStyle :' + title),
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text('Total Price :' + title1),
+                ],
+              ),
               ElevatedButton(
-                onPressed: () {
-                  //  Navigator.of(context)
-                  //     .pushNamed(RouteManager.findsalonPage);
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
                 ),

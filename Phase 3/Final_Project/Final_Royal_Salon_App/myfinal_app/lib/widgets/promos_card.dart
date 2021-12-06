@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myfinal_app/models/promo.dart';
 import 'package:myfinal_app/models/todo.dart';
+import 'package:myfinal_app/pages/client/booking_process/book_promo.dart';
 import 'package:myfinal_app/routes/routes.dart';
 
 class DisplayPromo extends StatelessWidget {
@@ -63,7 +64,15 @@ class DisplayPromo extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(RouteManager.bookPage);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BookNow1(
+                    title1: promo.stylename,
+                    title2: promo.discount,
+                  ),
+                ),
+              );
             },
             child: Text('Book'),
           ),

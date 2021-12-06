@@ -5,8 +5,8 @@ import 'package:myfinal_app/routes/routes.dart';
 import 'dart:math';
 import 'package:myfinal_app/widgets/payment_Alert.dart';
 
-class BookNow extends StatefulWidget {
-  const BookNow({
+class BookNow1 extends StatefulWidget {
+  const BookNow1({
     Key? key,
     required this.title1,
     required this.title2,
@@ -14,14 +14,15 @@ class BookNow extends StatefulWidget {
 
   final String title1;
   final String title2;
+
   @override
-  State<BookNow> createState() => _BookNowState(title1, title2);
+  State<BookNow1> createState() => _BookNow1State(title1, title2);
 }
 
-class _BookNowState extends State<BookNow> {
+class _BookNow1State extends State<BookNow1> {
   String title1, title2;
 
-  _BookNowState(this.title1, this.title2);
+  _BookNow1State(this.title1, this.title2);
 
   late String initialVal = 'Payment Option';
   late DateTime date;
@@ -92,6 +93,7 @@ class _BookNowState extends State<BookNow> {
                     ),
                   ],
                 ),
+
                 Row(
                   children: [
                     const SizedBox(width: 20),
