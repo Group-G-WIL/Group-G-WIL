@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:myfinal_app/routes/routes.dart';
+import 'package:myfinal_app/services/helper_home.dart';
 import 'package:myfinal_app/services/location_services.dart';
 import 'package:myfinal_app/services/user_service.dart';
 import 'package:provider/provider.dart' as provider;
@@ -220,7 +221,18 @@ class FindSalonState extends State<FindSalon> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    createNewFavouriteInUI(context,
+                        salonname: context
+                            .read<UserService>()
+                            .currentUser!
+                            .getProperty('salon_name'),
+                        salonAdress: context
+                            .read<UserService>()
+                            .currentUser!
+                            .getProperty('salonLocation'));
+                    saveAllTodosInUI(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.purple,
                   ),

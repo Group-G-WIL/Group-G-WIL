@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myfinal_app/pages/client/booking_process/receipt.dart';
 import 'package:myfinal_app/pages/client/client_menu/bookings.dart';
 import 'package:myfinal_app/routes/routes.dart';
+import 'package:myfinal_app/services/helper_home.dart';
 import 'dart:math';
 import 'package:myfinal_app/widgets/payment_Alert.dart';
 
@@ -68,7 +69,7 @@ class _BookNowState extends State<BookNow> {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, bottom: 10),
+                      padding: const EdgeInsets.only(left: 17, bottom: 10),
                       child: Text(
                         'HairStyle name: ' + title1,
                         style: TextStyle(
@@ -82,7 +83,7 @@ class _BookNowState extends State<BookNow> {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 17),
                       child: Text(
                         'HairStyle Price: ' + title2,
                         style: TextStyle(
@@ -94,7 +95,7 @@ class _BookNowState extends State<BookNow> {
                 ),
                 Row(
                   children: [
-                    const SizedBox(width: 20),
+                    const SizedBox(width: 17),
                     const Text(
                       'Select Date for Appointment : ',
                       style: TextStyle(
@@ -122,7 +123,7 @@ class _BookNowState extends State<BookNow> {
                 //
                 Row(
                   children: [
-                    const SizedBox(width: 20),
+                    const SizedBox(width: 17),
                     const Text(
                       'Select Time for Appointment : ',
                       style: TextStyle(
@@ -213,6 +214,13 @@ class _BookNowState extends State<BookNow> {
                   onPressed: () {
                     number = Random().nextInt(100) + 1;
 
+                    createNewInvoiceInUI(context,
+                        stylename: title1,
+                        price: title2,
+                        bookingnumber: number.toString(),
+                        date: '${date.day}:${date.month}:${date.year}',
+                        time: '${time.hour}:${time.minute}');
+                    saveAllinvoiceInUI(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -224,14 +232,6 @@ class _BookNowState extends State<BookNow> {
                           booknumber: number,
                         ),
                       ),
-                    );
-
-                    Booking(
-                      title1: number,
-                      name: title1,
-                      time: '${time.hour}:${time.minute}',
-                      date: '${date.day}:${date.month}:${date.year}',
-                      price: title2,
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -260,12 +260,12 @@ class _BookNowState extends State<BookNow> {
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: selectedDay,
+        initialDate: date,
         firstDate: DateTime(DateTime.now().month - 1),
         lastDate: DateTime(DateTime.now().year + 2));
     if (picked != null && picked != selectedDay) {
       setState(() {
-        selectedDay = picked;
+        date = picked;
       });
     }
   }

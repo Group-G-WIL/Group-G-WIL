@@ -4,7 +4,10 @@ import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myfinal_app/default/default.dart';
+import 'package:myfinal_app/pages/client/client_menu/bookings.dart';
 import 'package:myfinal_app/pages/client/client_menu/edit_account_client.dart';
+import 'package:myfinal_app/pages/client/client_menu/favourites.dart';
+import 'package:myfinal_app/pages/client/client_menu/inbox_client.dart';
 import 'package:myfinal_app/pages/client/client_menu/wallet_client.dart';
 import 'package:myfinal_app/pages/client/find_salon.dart/map.dart';
 import 'package:myfinal_app/services/helper_user.dart';
@@ -29,15 +32,9 @@ class _ClientMainState extends State<ClientMain> {
   _ClientMainState();
   final pages = [
     FindSalon(),
-    Center(
-      child: Text('OK'),
-    ),
-    Center(
-      child: Text('OK'),
-    ),
-    Center(
-      child: Text('OK'),
-    ),
+    RateNow(),
+    Bookinngs(),
+    Favourites(),
     Wallet(),
     EditAccount(),
   ];

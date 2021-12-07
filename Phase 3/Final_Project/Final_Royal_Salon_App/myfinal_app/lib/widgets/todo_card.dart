@@ -65,7 +65,7 @@ class TodoCard extends StatelessWidget {
                       Icons.person,
                       size: 50,
                     ),
-                  )
+                  ),
                 ],
               ),
             ],

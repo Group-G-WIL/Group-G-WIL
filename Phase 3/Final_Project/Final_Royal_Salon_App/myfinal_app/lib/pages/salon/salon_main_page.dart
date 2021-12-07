@@ -26,7 +26,7 @@ class SalonMain extends StatefulWidget {
 class _SalonMainState extends State<SalonMain> {
   final pages = const [
     SalonHome(),
-    InboxSalon(),
+    BookingList(),
     Center(
       child: Text('OK'),
     ),

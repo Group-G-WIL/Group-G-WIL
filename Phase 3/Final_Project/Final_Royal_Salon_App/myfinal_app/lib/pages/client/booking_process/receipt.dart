@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:myfinal_app/pages/client/client_main_page.dart';
+import 'package:myfinal_app/pages/client/client_menu/bookings.dart';
+import 'package:myfinal_app/services/helper_home.dart';
 import 'package:myfinal_app/services/todo_service.dart';
 import 'package:provider/provider.dart' as provider;
 
@@ -23,11 +26,20 @@ class Reciept extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Receipt'),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ClientMain(),
+                ),
+              );
+            },
+            icon: Icon(Icons.home)),
       ),
       body: Card(
         child: Container(
-          height: 200,
+          height: 220,
           color: Colors.cyan[100],
           child: Column(
             children: [
@@ -36,11 +48,14 @@ class Reciept extends StatelessWidget {
               ),
               Text('Thank you for Booking :'),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Row(
                 children: [
-                  Text('Booking number  : ' + booknumber.toString()),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Booking number  : ' + booknumber.toString()),
+                  ),
                 ],
               ),
               SizedBox(
@@ -48,7 +63,10 @@ class Reciept extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Date  : ' + date),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Date  : ' + date),
+                  ),
                 ],
               ),
               SizedBox(
@@ -56,7 +74,10 @@ class Reciept extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Time  : ' + time),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Time  : ' + time),
+                  ),
                 ],
               ),
               SizedBox(
@@ -64,7 +85,10 @@ class Reciept extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('HairStyle :' + title),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('HairStyle :' + title),
+                  ),
                 ],
               ),
               SizedBox(
@@ -72,16 +96,21 @@ class Reciept extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Total Price :' + title1),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Total Price :' + title1),
+                  ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                ),
-                child: Text('Track your booking'),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Colors.purple,
+              //   ),
+              //   child: Text('Track your booking'),
+              // ),
             ],
           ),
         ),

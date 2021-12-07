@@ -91,14 +91,10 @@ class RouteManager {
           builder: (context) => const Reset(),
         );
 
-      case noBooking:
-        return MaterialPageRoute(
-          builder: (context) => NoBookings(),
-        );
-      case inboxPage:
-        return MaterialPageRoute(
-          builder: (context) => AddSalonReviews(),
-        );
+      // case inboxPage:
+      //   return MaterialPageRoute(
+      //     builder: (context) => AddSalonReviews(),
+      //   );
       default:
         throw const FormatException('Route not found! Check routes again!');
     }

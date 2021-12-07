@@ -2,7 +2,12 @@ import 'package:backendless_sdk/backendless_sdk.dart';
 
 import 'package:flutter/material.dart';
 import 'package:myfinal_app/lifecycle.dart';
+import 'package:myfinal_app/models/comm.dart';
+import 'package:myfinal_app/models/favou.dart';
 import 'package:myfinal_app/models/promo.dart';
+import 'package:myfinal_app/models/receipts.dart';
+import 'package:myfinal_app/models/rev.dart';
+import 'package:myfinal_app/models/temp.dart';
 import 'package:myfinal_app/models/todo.dart';
 import 'package:myfinal_app/models/todo_entry.dart';
 
@@ -23,6 +28,45 @@ class TodoService with ChangeNotifier {
 
   void emptyPromos() {
     _promos = [];
+    notifyListeners();
+  }
+
+  List<Invoice> _invoices = [];
+  List<Invoice> get invoices => _invoices;
+  void emptyInvoices() {
+    _invoices = [];
+    notifyListeners();
+  }
+
+  List<Comment> _comments = [];
+  List<Comment> get comments => _comments;
+
+  void emptyComment() {
+    _comments = [];
+    notifyListeners();
+  }
+
+  List<Review> _reviews = [];
+  List<Review> get reviews => _reviews;
+
+  void emptyReview() {
+    _reviews = [];
+    notifyListeners();
+  }
+
+  List<Favourite> _favourites = [];
+  List<Favourite> get favourites => _favourites;
+
+  void emptyFavourites() {
+    _favourites = [];
+    notifyListeners();
+  }
+
+  List<Temp> _temps = [];
+  List<Temp> get temps => _temps;
+
+  void emptyTemp() {
+    _temps = [];
     notifyListeners();
   }
 
@@ -127,10 +171,20 @@ class TodoService with ChangeNotifier {
       _todoEntry = TodoEntry(
           todos: convertTodoListToMap(_todos),
           promos: convertPromoListToMap(_promos),
+          invoices: convertinvoicesListToMap(_invoices),
+          comments: convertCommentListToMap(_comments),
+          reviews: convertReviewListToMap(_reviews),
+          favourites: convertFavouriteListToMap(_favourites),
+          temps: convertTempListToMap(_temps),
           username: username);
     } else {
       _todoEntry!.todos = convertTodoListToMap(_todos);
       _todoEntry!.promos = convertPromoListToMap(_promos);
+      _todoEntry!.invoices = convertinvoicesListToMap(_invoices);
+      _todoEntry!.comments = convertCommentListToMap(_comments);
+      _todoEntry!.reviews = convertReviewListToMap(_reviews);
+      _todoEntry!.favourites = convertFavouriteListToMap(_favourites);
+      _todoEntry!.temps = convertTempListToMap(_temps);
     }
 
     if (inUI) {
@@ -164,6 +218,30 @@ class TodoService with ChangeNotifier {
     setUIStateFlag(UIState.CHANGED);
   }
 
+  void toggleInvoiceDone(int index) {
+    _invoices[index].done = !_invoices[index].done;
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void deleteComment(Comment comment) {
+    _comments.remove(comment);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void deleteFavourite(Favourite favourite) {
+    _favourites.remove(favourite);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void deleteReview(Review review) {
+    _reviews.remove(review);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
   void deleteTodo(Todo todo) {
     _todos.remove(todo);
     notifyListeners();
@@ -176,6 +254,12 @@ class TodoService with ChangeNotifier {
     setUIStateFlag(UIState.CHANGED);
   }
 
+  void deleteInvoice(Invoice invoice) {
+    _invoices.remove(invoice);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
   void createTodo(Todo todo) {
     _todos.insert(0, todo);
     notifyListeners();
@@ -184,6 +268,36 @@ class TodoService with ChangeNotifier {
 
   void createPromo(Promo promo) {
     _promos.insert(0, promo);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void createInvoice(Invoice invoice) {
+    _invoices.insert(0, invoice);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void createFavourite(Favourite favourite) {
+    _favourites.insert(0, favourite);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void createREview(Review review) {
+    _reviews.insert(0, review);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void createComment(Comment comment) {
+    _comments.insert(0, comment);
+    notifyListeners();
+    setUIStateFlag(UIState.CHANGED);
+  }
+
+  void createTemp(Temp temp) {
+    _temps.insert(0, temp);
     notifyListeners();
     setUIStateFlag(UIState.CHANGED);
   }

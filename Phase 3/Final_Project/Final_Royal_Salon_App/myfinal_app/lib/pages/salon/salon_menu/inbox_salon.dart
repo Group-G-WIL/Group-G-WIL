@@ -1,143 +1,97 @@
+import 'package:myfinal_app/services/todo_service.dart';
+import 'package:myfinal_app/services/user_service.dart';
+import 'package:myfinal_app/widgets/app_progress_indicator.dart';
+import 'package:myfinal_app/widgets/booking_salon.dart';
+import 'package:myfinal_app/widgets/bookings_client.dart';
+import 'package:provider/provider.dart' as provider;
 import 'package:flutter/material.dart';
-import 'package:myfinal_app/routes/routes.dart';
-import 'package:myfinal_app/widgets/dialogs.dart';
+import 'package:tuple/tuple.dart';
 
-class InboxSalon extends StatelessWidget {
-  const InboxSalon({Key? key}) : super(key: key);
+class BookingList extends StatelessWidget {
+  const BookingList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController;
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'List of bookings',
-              style: TextStyle(fontSize: 20),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.purple, Colors.blue],
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
+        ),
+        child: Stack(
+          children: [
+            SafeArea(
+              child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Colors.blue[200],
-                      shadowColor: Colors.blue,
-                      elevation: 12,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Client name: ',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Style name: ',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Price: ',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('Date: ', style: TextStyle(fontSize: 20))
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Booking number: ',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                          titleTextStyle: const TextStyle(
-                                            fontSize: 20.0,
-                                          ),
-                                          content: const Text(
-                                              'Are you sure you want to Remove this?'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                showSnackBar(
-                                                    context, 'Cancelled!');
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text(' NO '),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                showSnackBar(
-                                                    context, 'Deleted!');
-                                                Navigator.of(context).pushNamed(
-                                                    RouteManager.noBooking);
-                                              },
-                                              child: const Text(' Yes '),
-                                            ),
-                                          ]);
-                                    },
-                                  );
+                  Text(
+                    'List Of Bookings',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 20),
+                      child: provider.Consumer<TodoService>(
+                        builder: (context, value, child) {
+                          return ListView.builder(
+                            itemCount: value.invoices.length,
+                            itemBuilder: (context, index) {
+                              return BookingListCard(
+                                invoice: value.invoices[index],
+                                todoToggleAction: (valueStatus) async {
+                                  context
+                                      .read<TodoService>()
+                                      .toggleTodoDone(index);
                                 },
-                                child: Text('Remove'),
-                              ),
-                            ),
-                          ],
-                        ),
+                                deleteAction: () async {
+                                  context
+                                      .read<TodoService>()
+                                      .deleteInvoice(value.invoices[index]);
+                                },
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
-                  )
+                  ),
                 ],
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class NoBookings extends StatelessWidget {
-  const NoBookings({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Royal Salon'),
-      ),
-      body: Center(
-        child: Text(
-          'No Bookings yet',
-          style: TextStyle(fontSize: 20),
+              ),
+            ),
+            provider.Selector<UserService, Tuple2>(
+              selector: (context, value) =>
+                  Tuple2(value.showUserProgress, value.userProgressText),
+              builder: (context, value, child) {
+                return value.item1
+                    ? AppProgressIndicator(text: value.item2)
+                    : Container();
+              },
+            ),
+            provider.Selector<TodoService, Tuple2>(
+              selector: (context, value) =>
+                  Tuple2(value.busyRetrieving, value.busySaving),
+              builder: (context, value, child) {
+                return value.item1
+                    ? AppProgressIndicator(
+                        text:
+                            'Busy retrieving data from the database...please wait...')
+                    : value.item2
+                        ? AppProgressIndicator(
+                            text:
+                                'Busy saving data to the database...please wait...')
+                        : Container();
+              },
+            ),
+          ],
         ),
       ),
     );

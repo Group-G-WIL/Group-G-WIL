@@ -138,8 +138,15 @@ class UserService with ChangeNotifier {
     notifyListeners();
     try {
       await Backendless.userService.register(user);
-      TodoEntry emptyEntry =
-          TodoEntry(todos: {}, promos: {}, username: user.email);
+      TodoEntry emptyEntry = TodoEntry(
+          todos: {},
+          promos: {},
+          invoices: {},
+          reviews: {},
+          favourites: {},
+          comments: {},
+          temps: {},
+          username: user.email);
 
       await Backendless.data
           .of('TodoEntry')
