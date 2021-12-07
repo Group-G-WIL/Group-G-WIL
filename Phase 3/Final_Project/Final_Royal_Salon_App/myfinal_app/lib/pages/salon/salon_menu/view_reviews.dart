@@ -43,7 +43,7 @@ class ViewComment extends StatelessWidget {
                       child: provider.Consumer<TodoService>(
                         builder: (context, value, child) {
                           return ListView.builder(
-                            itemCount: value.todos.length,
+                            itemCount: value.comments.length,
                             itemBuilder: (context, index) {
                               return CommentCard(
                                 comment: value.comments[index],
@@ -73,9 +73,7 @@ class ViewComment extends StatelessWidget {
               builder: (context, value, child) {
                 return value.item1
                     ? AppProgressIndicator(text: value.item2)
-                    : Container(
-                        child: Text('No Bookings yet'),
-                      );
+                    : Container();
               },
             ),
             provider.Selector<TodoService, Tuple2>(

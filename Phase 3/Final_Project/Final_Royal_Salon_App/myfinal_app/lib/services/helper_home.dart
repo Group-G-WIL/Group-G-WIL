@@ -115,6 +115,17 @@ void saveAllinvoiceInUI(BuildContext context) async {
   }
 }
 
+void saveAlldoneInUI(BuildContext context) async {
+  String result = await context
+      .read<TodoService>()
+      .saveTodoEntry(context.read<UserService>().currentUser!.email, true);
+  if (result != 'OK') {
+    showSnackBar(context, result);
+  } else {
+    showSnackBar(context, 'Successfully removed');
+  }
+}
+
 void createNewTodoInUI(BuildContext context,
     {required TextEditingController titleController,
     required TextEditingController title1Controller}) async {
@@ -174,12 +185,8 @@ void createNewReviewInUI(
   required String rate2,
   required String comment,
 }) async {
-  if (stylename.isEmpty ||
-      salonname.isEmpty ||
-      rate1.isEmpty ||
-      rate2.isEmpty ||
-      comment.isEmpty) {
-    showSnackBar(context, 'Please Enter all fields');
+  if (stylename.isEmpty || salonname.isEmpty) {
+    //  showSnackBar(context, 'Please Enter all fields');
   } else {
     Review review = Review(
       comment: comment.trim(),
@@ -190,7 +197,7 @@ void createNewReviewInUI(
       created: DateTime.now(),
     );
     if (context.read<TodoService>().reviews.contains(review)) {
-      showSnackBar(context, 'Duplicate value. Please try again.');
+      //showSnackBar(context, 'Duplicate value. Please try again.');
     } else {
       comment = '';
       salonname = '';
@@ -209,7 +216,7 @@ void createNewTempInUI(
   required String salonname,
 }) async {
   if (stylename.isEmpty || salonname.isEmpty) {
-    showSnackBar(context, 'Please Enter all fields');
+    //  showSnackBar(context, 'Please Enter all fields');
   } else {
     Temp temp = Temp(
       salonname: salonname.trim(),
@@ -217,7 +224,7 @@ void createNewTempInUI(
       created: DateTime.now(),
     );
     if (context.read<TodoService>().temps.contains(temp)) {
-      showSnackBar(context, 'Duplicate value. Please try again.');
+      //  showSnackBar(context, 'Duplicate value. Please try again.');
     } else {
       salonname = '';
       stylename = '';

@@ -19,7 +19,7 @@ class BookingList extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.redAccent, Colors.blue],
           ),
         ),
         child: Stack(

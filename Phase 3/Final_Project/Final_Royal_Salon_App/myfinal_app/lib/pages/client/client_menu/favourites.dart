@@ -26,6 +26,9 @@ class Favourites extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     'Your Favourite Salons',
                     textAlign: TextAlign.center,

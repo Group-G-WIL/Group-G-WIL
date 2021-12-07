@@ -78,7 +78,7 @@ class RouteManager {
 
       case reviewsPage:
         return MaterialPageRoute(
-          builder: (context) => SalonReviews(),
+          builder: (context) => ViewComment(),
         );
 
       case getDirectionsPage:

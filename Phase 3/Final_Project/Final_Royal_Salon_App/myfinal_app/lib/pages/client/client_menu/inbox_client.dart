@@ -3,6 +3,7 @@ import 'package:myfinal_app/services/user_service.dart';
 import 'package:myfinal_app/widgets/app_progress_indicator.dart';
 import 'package:myfinal_app/widgets/booking_salon.dart';
 import 'package:myfinal_app/widgets/bookings_client.dart';
+import 'package:myfinal_app/widgets/review_card.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
@@ -19,7 +20,7 @@ class RateNow extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.blue, Colors.red],
           ),
         ),
         child: Stack(
@@ -27,6 +28,9 @@ class RateNow extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     'Rate your past services',
                     textAlign: TextAlign.center,
@@ -43,10 +47,10 @@ class RateNow extends StatelessWidget {
                       child: provider.Consumer<TodoService>(
                         builder: (context, value, child) {
                           return ListView.builder(
-                            itemCount: value.invoices.length,
+                            itemCount: value.reviews.length,
                             itemBuilder: (context, index) {
-                              return BookingListCard(
-                                invoice: value.invoices[index],
+                              return ReviewCard(
+                                review: value.reviews[index],
                                 todoToggleAction: (valueStatus) async {
                                   context
                                       .read<TodoService>()
@@ -55,7 +59,7 @@ class RateNow extends StatelessWidget {
                                 deleteAction: () async {
                                   context
                                       .read<TodoService>()
-                                      .deleteInvoice(value.invoices[index]);
+                                      .deleteReview(value.reviews[index]);
                                 },
                               );
                             },

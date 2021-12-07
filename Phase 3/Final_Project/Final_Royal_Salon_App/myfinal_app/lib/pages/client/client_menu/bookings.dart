@@ -18,7 +18,7 @@ class Bookinngs extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.purple, Colors.blue],
+            colors: [Colors.orange, Colors.blue],
           ),
         ),
         child: Stack(
@@ -26,6 +26,9 @@ class Bookinngs extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     'Track your bookings',
                     textAlign: TextAlign.center,

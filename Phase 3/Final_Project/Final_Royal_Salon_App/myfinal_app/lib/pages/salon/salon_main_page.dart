@@ -7,6 +7,7 @@ import 'package:myfinal_app/pages/salon/salon_menu/home.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/inbox_salon.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/promotions.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/schedule.dart';
+import 'package:myfinal_app/pages/salon/salon_menu/view_reviews.dart';
 import 'package:myfinal_app/pages/salon/salon_menu/wallet_salon.dart';
 import 'package:myfinal_app/services/helper_salon.dart';
 
@@ -27,9 +28,7 @@ class _SalonMainState extends State<SalonMain> {
   final pages = const [
     SalonHome(),
     BookingList(),
-    Center(
-      child: Text('OK'),
-    ),
+    ViewComment(),
     Promotions(),
     Schedule(),
     WalletSalon(),

@@ -34,16 +34,56 @@ class CommentCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Salon name: ' + comment.stylename,
+                  'Style name: ' + comment.stylename,
                   style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Comments: ' + comment.comment1,
+                  'Catagories',
                   style: TextStyle(fontSize: 20),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Rates',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Experience',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '${comment.rate1}',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'HairStyle',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '${comment.rate2}',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ],
             ),
